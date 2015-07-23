@@ -12,9 +12,9 @@ function vtbud
 % type vtbud.txt
 %          Copyright Joseph C. Slater, October 2006
 
-head = 'https://raw.githubusercontent.com/vibrationtoolbox/vtoolbox/master/'
-ziploc = 'https://github.com/vibrationtoolbox/vtoolbox/archive/master.zip'
-webpageloc= 'http://vibrationtoolbox.github.io'
+head = 'https://raw.githubusercontent.com/vibrationtoolbox/vtoolbox/master/';
+ziploc = 'https://github.com/vibrationtoolbox/vtoolbox/archive/master.zip';
+webpageloc= 'http://vibrationtoolbox.github.io';
 
 if ~strcmp(java.lang.System.getProperty( 'java.awt.headless' ),'true')
 
