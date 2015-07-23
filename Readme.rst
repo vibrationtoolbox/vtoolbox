@@ -13,9 +13,8 @@ free with the text "Engineering Vibration" by Dr. Daniel J. Inman
 (Prentice Hall, 1994, 1998, 2001,...) and is provided as a download for later editions.   
 
 The most current version, for use with the professional and student 
-versions of MATLAB 4 or later, can be obtained via the Engineering Vibration 
-Toolbox home page at http:/vibrationtoolbox.github.com for 
-more information. Please email me directly at mailto:joseph.c.slater@gmail.com if you 
+versions of MATLAB 4 or later, can be obtained via the `Engineering Vibration Toolbox web page`_ for 
+more information. Please `email me`_ directly at if you 
 have difficulty with this link.
 
 A brief introduction to UNIX and MATLAB is also available in PostScript format 
@@ -37,7 +36,7 @@ of problems that better take advantage of its capabilities.
 Setting Up The Toolbox
 =======================
 
-Please go to http://vibrationtoolbox.github.io for installation
+Please go to `Engineering Vibration Toolbox web page`_ for installation
 instructions. 
 
 
@@ -69,7 +68,7 @@ this flexibility.
 Contacting The Author
 =======================
 
-If you have any difficulty, please email me at joseph.c.slater@gmail.com.
+If you have any difficulty, please `email me`_.
 
 Please visit the `Engineering Vibration Toolbox web page`_.
 
@@ -116,3 +115,4 @@ Prentice Hall to distribute this software in any manner whatsoever.
 
 
 .. _`Engineering Vibration Toolbox web page`: http://vibrationtoolbox.github.io
+.. _`email me`: mailto:joseph.c.slater@gmail.com 
