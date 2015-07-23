@@ -71,8 +71,7 @@ Contacting The Author
 
 If you have any difficulty, please email me at joseph.c.slater@gmail.com.
 
-Please visit the `Engineering Vibration Toolbox home page<http://vibrationtoolbox.github.i>` at 
-http://vibrationtoolbox.github.io
+Please visit the `Engineering Vibration Toolbox home page<http://vibrationtoolbox.github.io>`_.
 
 
 Acknowledgements
