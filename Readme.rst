@@ -1,19 +1,21 @@
+The Engineering Vibration Toolbox
+###################################
 
-ABOUT THE ENGINEERING VIBRATION TOOLBOX:
+About The Engineering Vibration Toolbox
+========================================
 
 The Engineering Vibration Toolbox is a set of educational programs 
 written in MATLAB by Joseph C. Slater. Also included are a number of help files,  
 demonstration examples, and data files containing raw experimental data. The 
 codes include single degree of freedom response, response spectrum, finite 
 elements, numerical integration, and phase plane analysis. It is included 
-free with the text "Engineering Vibration" by Dr. Daniel J.  Inman 
+free with the text "Engineering Vibration" by Dr. Daniel J. Inman 
 (Prentice Hall, 1994, 1998, 2001,...) and is provided as a download for later editions.   
 
 The most current version, for use with the professional and student 
 versions of MATLAB 4 or later, can be obtained via the Engineering Vibration 
-Toolbox home page at http://www.cs.wright.edu/~vtoolbox using NetScape(R), 
-NCSA Mosaic(R), Internet Explorer or any other HTML 2.0 capable browser for 
-more information. Please email me directly at mailto:jslater@wright.edu if you 
+Toolbox home page at http:/vibrationtoolbox.github.com for 
+more information. Please email me directly at mailto:joseph.c.slater@gmail.com if you 
 have difficulty with this link.
 
 A brief introduction to UNIX and MATLAB is also available in PostScript format 
@@ -24,49 +26,26 @@ do so now. You should be familiar with MATLAB before running this
 software. 
 
 
-NOTE TO INSTRUCTORS:
+Note To Instructors
+====================
 
 Regular updates are made to the toolbox.  Please send me any 
 problems you've developed for the toolbox, I'd like to begin a collection 
 of problems that better take advantage of its capabilities.
 
 
-SETTING UP THE TOOLBOX:
+Setting Up The Toolbox
+=======================
 
-New easy way:
-	If you have this file on your hard drive, then you already have the vtbud.m script. 
-	Run this while connected to the internet to automatically download and install the
-	newest version. If it is not in your path, Open the file 'vtbud.m' in the Matlab 
-	editor and click the Run icon. (It looks like a document with a down arrow to the left).
-
-Old hard way:
-	Only if the easy way fails for some reason (Please report to me which versions of 
-	Matlab fail to run vtbud successfully):
-	The first step is to download the toolbox in zip compressed format. 
-
-	Put the directory where you want it installed. It should be in your personal document
-	space so that when Matlab gets updated in the future it doesn't delete the toolbox.
-
-	Free utilities exist on UNIX, Windows, and MAC for uncompressing these formats. 
-	Some of these have been posted to the web site. The documentation for the 
-	software you use will explain how to uncompress the files.  Please talk to your 
-	computer support people if you have difficulty decompressing the files.
-
-	Later versions of Matlab can also unzip zip files with the zip command. 
-
-	The toolbox can go in any directory as long as the Matlab path to it is 
-	set properly.  
-
-	Open the file 'vtbsetup.m' in the Matlab editor and click the Run icon. (It looks 
-	like a document with a down arrow to the left).
-
-	Please report any installation problems. 
+Please go to http://vibrationtoolbox.github.io for installation
+instructions. 
 
 
-USING THE ENGINEERING VIBRATION TOOLBOX
+Using The Engineering Vibration Toolbox
+=========================================
 
 The Engineering Vibration Toolbox will check for updates every 7 days by default. 
-To change this default, redefine the variable chkskip in the file vtbchk. 
+To change this default, redefine the variable :code:`chkskip` in the file :code:`vtbchk.m`. 
 Unfortunately this will be written over at the next update. 
 
 The files on this disk will load/run on all platforms if transferred 
@@ -88,15 +67,17 @@ functions have multiple forms of input. The help for each function shows
 this flexibility.
 
 
-CONTACTING THE AUTHOR:
+Contacting The Author
+=======================
 
-If you have any difficulty, please email me at jslater@cs.wright.edu.
+If you have any difficulty, please email me at joseph.c.slater@gmail.com.
 
 Please visit the Engineering Vibration Toolbox home page at 
-http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.html
+http://vibrationtoolbox.github.io
 
 
-ACKNOWLEDGEMENTS:
+Acknowledgements
+===================
 
 Support for the Engineering Vibration Toolbox has come from a number of 
 sources. First and foremost, Daniel J. Inman, who initially tasked myself 
@@ -112,7 +93,9 @@ Chiroux for their patience in testing numerous 4.0 beta versions of this
 software.
 
 
-LICENSE:
+License
+============
+
 The Engineering Vibration Toolbox is licensed free of charge for educational use. 
 For professional use, users should contact the Engineering Vibration Toolbox 
 author directly.
