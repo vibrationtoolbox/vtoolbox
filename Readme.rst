@@ -49,20 +49,19 @@ To change this default, redefine the variable :code:`chkskip` in the file :code:
 Unfortunately this will be written over at the next update. 
 
 The files on this disk will load/run on all platforms if transferred 
-properly. Files with the extension .mat, .exa, .con, .eqn, and .out are 
-binary files compatible on all platforms. To load them type "load filename 
--mat". Files with no extension or the extension .m are text files and must 
+properly. Files with the extension :code:`.mat`, :code:`.exa`, :code:`.con`, :code:`.eqn`, and :code:`.out` are 
+binary files compatible on all platforms. To load them type :code:`"load filename -mat"`. Files with no extension or the extension .m are text files and must 
 be transferred properly to assure that the end-of-line characters are 
 correct for your platform. 
 
-Typing 'help vtoolbox' will provide a table of contents of the toolbox. 
-Likewise, typing 'help vtb?' will provide a table of contents for the 
+Typing :code:`help vtoolbox` will provide a table of contents of the toolbox. 
+Likewise, typing :code:`help vtb?` will provide a table of contents for the 
 files related to chapter '?'. Typing 'help codename' will provide help on 
 the particular code.  Note that the 'filename' is 'codename.m'.
 
 Engineering Vibration Toolbox commands can be run by typing them with the 
 necessary arguments just as any other MATLAB commands/functions. For 
-instance, vtb1_1 can be run by typing "vtb1_1(1,.1,1,1,0,10)". Many 
+instance, :code:`vtb1_1` can be run by typing :code:`"vtb1_1(1,.1,1,1,0,10)"`. Many 
 functions have multiple forms of input. The help for each function shows 
 this flexibility.
 
