@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Updates to Engineering Vibration Toolbox since 1/1/98</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="updates-to-engineering-vibration-toolbox-since-1-1-98">
+<h1 class="title">Updates to Engineering Vibration Toolbox since 1/1/98</h1>
+
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="17%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Date</th>
+<th class="head">code/s</th>
+<th class="head">change</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>04/14/14</td>
+<td>vtb7_5</td>
+<td>Fix automated upper bound on FRF frequency for calculations.</td>
+</tr>
+<tr><td>10/03/12</td>
+<td>vtbchk</td>
+<td>Fix crash when off internet, provide warning.</td>
+</tr>
+<tr><td>06/27/12</td>
+<td>vtbud</td>
+<td>Avoid errors when run without GUI.</td>
+</tr>
+<tr><td>06/27/12</td>
+<td>Comments</td>
+<td>vtoolbox version number now displaying properly using VER</td>
+</tr>
+<tr><td>10/20/11</td>
+<td>vtb3_3</td>
+<td>Added example illustrating the Gibb's effect.</td>
+</tr>
+<tr><td>05/29/09</td>
+<td>vtb4_4</td>
+<td>Simulate forced response of MDOF system (uses lsim)</td>
+</tr>
+<tr><td>04/13/09</td>
+<td>vtb2_4</td>
+<td>Add missing argument back in (opt wasmissing)</td>
+</tr>
+<tr><td>01/23/08</td>
+<td>vtb10_1</td>
+<td>Fixed incompatible legacy code</td>
+</tr>
+<tr><td>07/14/08</td>
+<td>vtb7_5</td>
+<td>Corrected error of calling unavailable function ssit</td>
+</tr>
+<tr><td>07/14/08</td>
+<td>vtb7_6</td>
+<td>New code to find eigenvalues and mode shapes using power method.</td>
+</tr>
+<tr><td>04/25/08</td>
+<td>vtbchk</td>
+<td>New code called at the end of each function to provide automated update
+checking. Function is run at the termination of all major functions.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb3_1</td>
+<td>Corrected aliasing issue reported by Pappa, added settling time marks.</td>
+</tr>
+<tr><td>04/15/08</td>
+<td>vtb1_4</td>
+<td>Added to the help</td>
+</tr>
+<tr><td>02/22/08</td>
+<td>vtb6_3</td>
+<td>Free-free conditions were missing one mode</td>
+</tr>
+<tr><td>02/20/08</td>
+<td>vtb6_3</td>
+<td>Simply supported modes were broken</td>
+</tr>
+<tr><td>02/20/08</td>
+<td>vtb6_5</td>
+<td>Boundary condition type wasn't being used</td>
+</tr>
+<tr><td>11/23/07</td>
+<td>vtb3_5</td>
+<td>Improved to more easily handle even/odd differences</td>
+</tr>
+<tr><td>09/02/07</td>
+<td>vtb6_3</td>
+<td>Didn't plot modes correctly</td>
+</tr>
+<tr><td>08/29/07</td>
+<td>vtb6_5</td>
+<td>New code, generates FRF for beam</td>
+</tr>
+<tr><td>07/20/07</td>
+<td>vtb6_3</td>
+<td>Added rigid body modes</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb6_3</td>
+<td>Added animations</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb6_3</td>
+<td>Changed input format</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb6_3</td>
+<td>Mass normalized mode shapes</td>
+</tr>
+<tr><td>06/25/07</td>
+<td>vtb1_3</td>
+<td>Corrected description of vtb1_3</td>
+</tr>
+<tr><td>11/20/06</td>
+<td>vtb4_1</td>
+<td>Corrected reported wrong modes</td>
+</tr>
+<tr><td>11/17/06</td>
+<td>vtb3_5</td>
+<td>Added: Plot Fourier series</td>
+</tr>
+<tr><td>11/10/06</td>
+<td>vtbud</td>
+<td>Improved vtbud so false updates won't be reported.</td>
+</tr>
+<tr><td>11/10/06</td>
+<td>vtbud</td>
+<td>Fixed unix installation to avoid repeatedly adding path to startup.m file.</td>
+</tr>
+<tr><td>10/24/06</td>
+<td>vtb1_3</td>
+<td>Attempts to automatically correct for bad step size choices.</td>
+</tr>
+<tr><td>10/23/06</td>
+<td>vtb</td>
+<td>Improved help.</td>
+</tr>
+<tr><td>10/23/06</td>
+<td>vtbud</td>
+<td>Fix bugs, error checking.</td>
+</tr>
+<tr><td>10/21/06</td>
+<td>vtb1_3</td>
+<td>Only for single degree of freedom systems. Doesn't require editing separate
+file.</td>
+</tr>
+<tr><td>10/20/06</td>
+<td>vtbud</td>
+<td>Now can install and/or update the toolbox.</td>
+</tr>
+<tr><td>06/12/06</td>
+<td>vtb4_1</td>
+<td>Incorporated Cholesky Decomposition</td>
+</tr>
+<tr><td>09/14/05</td>
+<td>vtb3_3</td>
+<td>Error regarding using i as a variable fixed.</td>
+</tr>
+<tr><td>05/15/01</td>
+<td>vtb3</td>
+<td>Changed help for vtb3_3</td>
+</tr>
+<tr><td>05/15/01</td>
+<td>vtb3_3</td>
+<td>Fixed vtb3_3 when n is not given by user.</td>
+</tr>
+<tr><td>01/01/01</td>
+<td>vtb1_2</td>
+<td>Changed the word undamped to unforced in the help</td>
+</tr>
+<tr><td>11/26/00</td>
+<td>vtbud</td>
+<td>Changed URL for vtbud. Created vtbud.txt to log changes</td>
+</tr>
+<tr><td>10/30/00</td>
+<td>vtb8_1</td>
+<td>Fixed no longer available 'i' plot type.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb8_3</td>
+<td>Fixed no longer available 'i' plot type.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb8</td>
+<td>Updated documentation file name.</td>
+</tr>
+<tr><td>07/24/00</td>
+<td>vtb1_3</td>
+<td>Corrected help (vtb9_3 -&gt; vtb1_3) and spelling
+error.</td>
+</tr>
+<tr><td>05/09/00</td>
+<td>vtb7_4</td>
+<td>Curve fitting is much more robust, much less likely to fail.</td>
+</tr>
+<tr><td>04/28/00</td>
+<td>vtb2_3</td>
+<td>Corrected phase plot</td>
+</tr>
+<tr><td>04/28/00</td>
+<td>numerous</td>
+<td>Replaced greek names with greek characters and made subscripts show up
+properly.</td>
+</tr>
+<tr><td>04/24/00</td>
+<td>vtb2_4</td>
+<td>Added plotting options.</td>
+</tr>
+<tr><td>04/24/00</td>
+<td>vtb2_3</td>
+<td>Added plotting options.</td>
+</tr>
+<tr><td>04/21/00</td>
+<td>vtb2_3</td>
+<td>Added legend &amp; default values</td>
+</tr>
+<tr><td>04/21/00</td>
+<td>vtb2_4</td>
+<td>Added default values</td>
+</tr>
+<tr><td>04/20/00</td>
+<td>vtb2_4</td>
+<td>Now allows a list of values of zeta</td>
+</tr>
+<tr><td>03/21/00</td>
+<td>vtb1_5</td>
+<td>Calls the old vtb2_6. vtb2_6 has been grandfathered.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb1_2</td>
+<td>Is the old vtb9_2. vtb9_2has been grandfathered.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb1_3</td>
+<td>Is the old vtb9_3. vtb9_3 has been grandfathered.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>grandfathered.</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb1_3ex</td>
+<td>Is the old vtb9_3ex. vtb9_3ex has been grandfathered.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>grandfathered.</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb1_4</td>
+<td>Is the old vtb9_4. vtb9_4 has been grandfathered.</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>grandfathered.</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>vtb4_3</td>
+<td>Is the old vtb9_1. vtb9_1 has been grandfathered.</td>
+</tr>
+<tr><td>02/29/00</td>
+<td>vtb3_3</td>
+<td>Can now run with no arguments.</td>
+</tr>
+<tr><td>02/28/00</td>
+<td>vtb2_3</td>
+<td>Can now take a list of values for zeta.</td>
+</tr>
+<tr><td>02/04/00</td>
+<td>vtb7</td>
+<td>Added references to vtb7_4 and vtb7_5</td>
+</tr>
+<tr><td>01/13/00</td>
+<td>numerous</td>
+<td>Removed GUI buttons for printing since recent versions of Matlab enable such
+GUI capabilities on all platforms. Also, removed a number of figure
+commands. This will allow the user to invoke the hold command and plot
+multiple graphics on a single figure.</td>
+</tr>
+<tr><td>01/13/00</td>
+<td>readme.txt
+Contents.m</td>
+<td>Updated version of toolbox to 5 to represent dropping of support for version
+4 of Matlab in future releases.</td>
+</tr>
+<tr><td>11/08/99</td>
+<td>vtb7_4</td>
+<td>Improved robustness of curve fitting with the addition of a few checks. Note:
+This code does not fit simultaneous FRFs. Thus the results for MDOF systems
+can vary.</td>
+</tr>
+<tr><td>10/07/99</td>
+<td>vtb7_4</td>
+<td>Added. Now FRF curve fitting can be performed to ID damping, natural
+frequencies, and even mode shapes. There is enough there to perform a
+complete modal analysis.</td>
+</tr>
+<tr><td>10/07/99</td>
+<td>vtb7_5</td>
+<td>Added. Now FRFs of computational models can be obtained, viewed, or used in
+vtb7_4. Includes receptance, mobility, and inertance, along with output of
+the corresponding frequency vector.</td>
+</tr>
+<tr><td>11/20/98</td>
+<td>readme.txt</td>
+<td>Updated to clarify installation instructions</td>
+</tr>
+<tr><td>11/11/98</td>
+<td>vtbud</td>
+<td>Modified URL for web page to use shorter (~) link</td>
+</tr>
+<tr><td>11/11/98</td>
+<td>vtb3_3</td>
+<td>Modified example to match default function (Example 3.3.1, T=1)</td>
+</tr>
+<tr><td>04/03/98</td>
+<td>vtbud</td>
+<td>Running vtbud automatically displays the most recent vtb updates in your web
+browser</td>
+</tr>
+<tr><td>04/03/98</td>
+<td>vtb,vtoolbox</td>
+<td>Added error response when called without help</td>
+</tr>
+<tr><td>03/30/98</td>
+<td>Contents</td>
+<td>Added reference to
+web page</td>
+</tr>
+<tr><td>03/30/98</td>
+<td>Readme</td>
+<td>Corrected reference to new web page</td>
+</tr>
+<tr><td>03/30/98</td>
+<td>vtb</td>
+<td>Added reference to web page</td>
+</tr>
+<tr><td>03/17/98</td>
+<td>vtb4_2</td>
+<td>Incorrect matrix exponential fixed</td>
+</tr>
+</tbody>
+</table>
+<p>Run vtbud to compare your version to the most current one.</p>
+<p>More information is available at the Engineering Vibration Toolbox
+website: <a class="reference external" href="http://www.cecs.wright.edu/~vtoolbox">http://www.cecs.wright.edu/~vtoolbox</a></p>
+</div>
+</body>
+</html>
