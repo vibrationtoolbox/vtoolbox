@@ -12,7 +12,7 @@ function vtbud
 % type vtbud.txt
 %          Copyright Joseph C. Slater, October 2006
 
-head = 'https://raw.githubusercontent.com/vibrationtoolbox/vtoolbox/master/';
+head = 'http://vibrationtoolbox.com/';
 ziploc = 'https://github.com/vibrationtoolbox/vtoolbox/archive/master.zip';
 webpageloc= 'http://vibrationtoolbox.github.io';
 
