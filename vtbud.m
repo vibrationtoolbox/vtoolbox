@@ -121,6 +121,7 @@ if strcmp(answer,'Yes')&&strcmp(license,'Yes')
         unzip('vtoolbox.zip')
         delete('vtoolbox.zip')
     end
+movefile('vtoolbox-master','vtoolbox')
 cd('vtoolbox');
 addpath(pwd,'-end');
 vtbdir=pwd;

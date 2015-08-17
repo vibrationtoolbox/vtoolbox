@@ -1,5 +1,5 @@
 on% Student Edition of the Vibration Toolbox
-% Version 7.0.x June 27, 2012 27-6-2012
+% Version 7.0.x August 2015
 % For use with MATLAB 7.x or above
 %  Type "help vtoolbox" for help on the Engineering Vibration Toolbox.
 %  Type "help vtbud" for a list of updates since 1/1/98 and update the
