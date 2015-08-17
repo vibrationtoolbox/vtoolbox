@@ -9,7 +9,7 @@ written in MATLAB by Joseph C. Slater. Also included are a number of help files,
 demonstration examples, and data files containing raw experimental data. The 
 codes include single degree of freedom response, response spectrum, finite 
 elements, numerical integration, and phase plane analysis. It is included 
-free with the text "Engineering Vibration" by Dr. Daniel J. Inman 
+free with the text **Engineering Vibration** by Dr. Daniel J. Inman 
 (Prentice Hall, 1994, 1998, 2001,...) and is provided as a download for later editions.   
 
 The most current version, for use with the professional and student 
@@ -17,11 +17,8 @@ versions of MATLAB 4 or later, can be obtained via the `Engineering Vibration To
 more information. Please `email me`_ directly at if you 
 have difficulty with this link.
 
-A brief introduction to UNIX and MATLAB is also available in PostScript format 
-on the FTP site.
-
 If you have not already installed MATLAB or the Student Edition of MATLAB, 
-do so now. You should be familiar with MATLAB before running this 
+do so now. You should be somewhat familiar with MATLAB before running this 
 software. 
 
 
@@ -55,7 +52,7 @@ correct for your platform.
 
 Typing :code:`help vtoolbox` will provide a table of contents of the toolbox. 
 Likewise, typing :code:`help vtb?` will provide a table of contents for the 
-files related to chapter '?'. Typing 'help codename' will provide help on 
+files related to chapter *?*. Typing 'help codename' will provide help on 
 the particular code.  Note that the 'filename' is 'codename.m'.
 
 Engineering Vibration Toolbox commands can be run by typing them with the 

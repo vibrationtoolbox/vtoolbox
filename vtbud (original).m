@@ -5,17 +5,13 @@ function vtbud
 % Prompts for automated upating and installation
 %
 % If Matlab is not set up to launch your browser, connect to
-% web https://raw.githubusercontent.com/vibrationtoolbox/vtoolbox/master/vtbud.txt
+% http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox/vtbud.txt
 % manually.
 %
 
-% type vtbud.txt
+%type vtbud.txt
 %          Copyright Joseph C. Slater, October 2006
 
-head = 'https://github.com/vibrationtoolbox/vtoolbox/blob/master/';
-sourcehead = 'https://github.com/vibrationtoolbox/vtoolbox/';
-ziploc = 'https://github.com/vibrationtoolbox/vtoolbox/archive/master.zip';
-webpageloc= 'http://vibrationtoolbox.github.io';
 
 if ~strcmp(java.lang.System.getProperty( 'java.awt.headless' ),'true')
 
@@ -54,9 +50,9 @@ else
 %    web vtbud.txt
     
     insdatestamp=urlread(['file:///' fullfile(vtbdir,'vtbdatestamp.txt')]);
-    curdatestamp=urlread([sourcehead 'vtbdatestamp.txt']);
+    curdatestamp=urlread('http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox/vtbdatestamp.txt');
     if str2num(insdatestamp)<str2num(curdatestamp)&~strcmp(java.lang.System.getProperty( 'java.awt.headless' ),'true')
-    web([head 'vtbud.txt']);
+    web http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox/vtbud.txt;
     answer=questdlg('You do not have the most recent version of the Engineering Vibration Toolbox. Please, review the recent updates to determine if you want to update. Do you want to update the Engineering Vibration Toolbox?','Update now?','Update','No','Cancel','tex');
         if strcmp(answer,'Update')
             answer='Yes';
@@ -105,19 +101,19 @@ if strcmp(answer,'Yes')&&strcmp(license,'Yes')
         'Install from?','Hard drive','Internet','Internet');
         if strcmp(answer,'Internet')
             delete('vtoolbox.zip')
-            urlwrite(ziploc,'vtoolbox.zip')
+            urlwrite('http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.zip','vtoolbox.zip')
             unzip('vtoolbox.zip')
             delete('vtoolbox.zip')
         else
             unzip('vtoolbox.zip',pwd)
         end
     else
-        [weby,st]=urlread(webpageloc);
+        [weby,st]=urlread('http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.html');
         if st==0
             msgdlg('Without a downloaded vtoolbox.zip file or an internet connection the installation cannot continue.','Error')
             return
         end
-        urlwrite(ziploc,'vtoolbox.zip')
+        urlwrite('http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.zip','vtoolbox.zip')
         unzip('vtoolbox.zip')
         delete('vtoolbox.zip')
     end
