@@ -1,6 +1,9 @@
 The Engineering Vibration Toolbox
 ###################################
 
+**Note: A critical error was discovered in the update mechanism. Please run** *vtbud* **to update your code if you get an error including mention of** *vtbchk*. **Thank you.**
+
+
 About The Engineering Vibration Toolbox
 ========================================
 
