@@ -24,7 +24,7 @@ if (str2double(chkdatestamp)<(now-chkskip))
     if status==0
     disp('Engineering Vibration Toolbox update checking not working. No network connection.')
     disp('Run ''vtbchk'' while on online to check for updates.')
-    disp(['Automatic check again in ' str2num(chkskip) ' days.'])
+    disp(['Automatic check again in ' num2str(chkskip) ' days.'])
     end
 end
 
