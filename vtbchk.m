@@ -1,6 +1,8 @@
 function vtbchk
-%VTBCHK Checks for updates on a regular basis.
-% chkskip tells how often to run check.
+%VTBCHK Checks for updates on a semi-regular basis.
+% Mostly precludes need to run vtbud manually
+
+% variable chkskip tells how often to run check.
 
 %Joseph C. Slater, April 2008
 
@@ -38,8 +40,12 @@ if (str2double(chkdatestamp)<(now-chkskip))
 	disp('Run vtbud at any time you are online to check for updates to the Engineering Vibration Toolbox.')
     end
     if status==0
-    disp('Engineering Vibration Toolbox update checking not working. No network connection.')
-    disp('Run ''vtbchk'' while on online to check for updates.')
+    disp('Engineering Vibration Toolbox update checking not working.')
+    disp(['Either you are not on the internet, or a fault has ' ...
+          'occured.'])
+    disp(['If you are online, please notify me by filing an error ' ...
+          'report at http://vibrationtoolbox.github.io'])
+    disp('Run ''vtbud'' while on online to check for updates.')
     disp(['Automatic check again in ' num2str(chkskip) ' days.'])
     end
 end
