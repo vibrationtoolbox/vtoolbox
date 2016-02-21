@@ -3,10 +3,24 @@ function vtbchk
 % chkskip tells how often to run check.
 
 %Joseph C. Slater, April 2008
+
+head = 'https://github.com/vibrationtoolbox/vtoolbox/blob/master/';
+sourcehead = 'https://raw.githubusercontent.com/vibrationtoolbox/vtoolbox/master/';
+ziploc = 'https://github.com/vibrationtoolbox/vtoolbox/archive/master.zip';
+webpageloc= 'http://vibrationtoolbox.github.io';
+
+
+
 chkskip=7;% number of days to go without checking again.
 curpath=pwd;
 vtbdir=which('vtb1_1.m');vtbdir=vtbdir(1:(length(vtbdir)-8));
 cd(vtbdir)
+
+%chckdatestamp is the last time the code checked to see if there
+%were updates. 
+
+%vtbdatestamp is the time stamp of the toolboxes last edit. 
+
 if exist('chkdatestamp.txt')==0
 	chkdatestamp=0;
 else
@@ -15,9 +29,11 @@ end
 
 
 if (str2double(chkdatestamp)<(now-chkskip))
-	[insdatestamp,status]=urlread(['file:///' fullfile(vtbdir,'vtbdatestamp.txt')]);
-	[curdatestamp,status]=urlread('http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox/vtbdatestamp.txt');
-	if (str2double(insdatestamp)<str2double(curdatestamp))
+    %installed date
+    [insdatestamp,status]=urlread(['file:///' fullfile(vtbdir,'vtbdatestamp.txt')]);
+    %online stamp
+    [curdatestamp,status]=urlread([sourcehead 'vtbdatestamp.txt']);
+    if (str2double(insdatestamp)<str2double(curdatestamp))
 	vtbud
 	disp('Run vtbud at any time you are online to check for updates to the Engineering Vibration Toolbox.')
     end

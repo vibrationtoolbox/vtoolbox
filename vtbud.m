@@ -19,7 +19,7 @@ webpageloc= 'http://vibrationtoolbox.github.io';
 
 if ~strcmp(java.lang.System.getProperty( 'java.awt.headless' ),'true')
 
-
+    % Location of Engineering Vibration Toolbox Installation
 vtbdir=which('vtb1_1.m');
 curdir=pwd;
 license='No';
