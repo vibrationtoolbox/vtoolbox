@@ -114,5 +114,5 @@ permission is given to anyone other than myself, the MathWorks and
 Prentice Hall to distribute this software in any manner whatsoever. 
 
 
-.. _`Engineering Vibration Toolbox web page`: http://vibrationtoolbox.github.io
+.. _`Engineering Vibration Toolbox web page`: https://vibrationtoolbox.github.io
 .. _`email me`: mailto:joseph.c.slater@gmail.com 
