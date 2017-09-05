@@ -1,16 +1,16 @@
 function [z,nf,a,com]=VTB7_4(f,TF,b)
 %[z,nf,a,com]=VTB7_4(f,TF) Curve fit to SDOF FRF.
-% f is the frequency vector in Hz. It does not have to 
+% f is the frequency vector in Hz. It does not have to
 %    start at 0 Hz.
 % TF is the complex transfer function.
 % z and nf are the damping ratio and natural frequency (Hz)
-% a is the product of the residues of the coordinates the 
-% transfer function is between. (For example, in the example 
+% a is the product of the residues of the coordinates the
+% transfer function is between. (For example, in the example
 % below, a1 times a2 is returned. See equation 7.42)
-% If com is returned as a real number, then it is the 
-% compliance between the two coordinates. 
-% Only one peak may exist in the segment of the FRF passed to 
-% VTB7_4. No zeros may exist withing this segment. Otherwise, 
+% If com is returned as a real number, then it is the
+% compliance between the two coordinates.
+% Only one peak may exist in the segment of the FRF passed to
+% VTB7_4. No zeros may exist withing this segment. Otherwise,
 % curve fitting becomes unreliable.
 %
 % EXAMPLE:
@@ -32,7 +32,8 @@ function [z,nf,a,com]=VTB7_4(f,TF,b)
 % Updated 11/8/99 to improve robustness
 % Updated 1/1/00 to improve robustness
 
-
+disp('This code is deprecated. Please use mdofcf or sdofcf.')
+return
 global XoF
 
 if nargin==2
@@ -44,18 +45,18 @@ if nargin==2
     fitnums=(in-5:in+5);% fit only a few points
 
 	p=polyfit(real(TF(fitnums)),odr(fitnums),1);
-	
+
 	omegan=polyval(p,0);
 	in=in-2;
-	
+
 	while abs(real(TF(in+1)))<abs(real(TF(in)))
 		in=in+1;
 	end
 %    fitnums=(in-5:in+5);
 	p=polyfit(odr(fitnums),atan2(imag(TF(fitnums)),real(TF(fitnums))),1);
-	
+
 	odr(in);
-	
+
 	z=-1/p(1)/omegan;
 	if z>.02
 		lin=in-15;hin=in+15;
@@ -65,7 +66,7 @@ if nargin==2
 		if hin>lf
 			hin=lf
 		end
-		
+
 	    fitnums=(lin:hin);
 		p=polyfit(odr(fitnums),atan2(imag(TF(fitnums)),real(TF(fitnums))),1);
 		z=-1/p(1)/omegan;
@@ -83,8 +84,8 @@ if nargin==2
 		disp('Please center your peak and try again')
 		return
 	end
-		
-	x;	
+
+	x;
 	x=fmins('vtb7_4',x,[],[],f(in-3:in+2),TF(in-3:in+2));
     x;
 	cferr(x,f,TF);	%x
@@ -143,13 +144,13 @@ if nargin==2
 	  xlabel('Frequency (Hz)')
 	  ylabel('Phase (deg)')
 	  legend('Identified FRF','Experimental FRF',0)
-	
+
 	  grid on
 	  axis([Fmin Fmax  phmin_max(1) phmin_max(2)])
 	  gridmin_max=round(phmin_max/90)*90;
 	  set(gca,'YTick',gridmin_max(1):22.5:gridmin_max(2))
 	  zoom on
-	
+
   end
 else
 %	global  XoF
@@ -165,7 +166,7 @@ else
 %	for j=1:(lx/3)-1
 	XoF=XoF+x(1)./(-w2.^2+2*x(2)*w2*i*x(3)+x(3)^2);
 %	end
-	
+
 	vtb74=norm(XoF-TF);
 	z=vtb74;
 end
