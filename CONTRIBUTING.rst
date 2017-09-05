@@ -1,6 +1,7 @@
 
 Reporting bugs
 --------------
+
 If you find a bug, please open an issue on the `Github issues tracker <https://github.com/vibrationtoolbox/vibration_toolbox/issues>`_.
 Please provide some code that reproduces the error and versions of the packages installed.
 
