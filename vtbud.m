@@ -88,8 +88,8 @@ else
             annswer=questdlg('Are you sure you want to remove the Engineering Vibration Toolbox?','Really Remove?','No');
             if strcmp(annswer,'Yes')
                 answer='Cancel';
-                rmdir('vtoolbox','s')
                 rmpath([vtbupdir 'vtoolbox'])    
+                rmdir('vtoolbox','s')
             end
         end        
     end    
