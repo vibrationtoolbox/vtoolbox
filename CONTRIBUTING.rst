@@ -13,7 +13,7 @@ To contribute code we recommend you follow these steps:
 
 4. Clone the repository to your favorite location on your drive where you want to work on it. You never want to clone again.
 
-#. Use Matlab's `addpath` command to add the vtoolbox directory to your installation of Matlab
+#. Use Matlab's `addpath` command to add the vtoolbox directory to your installation of Matlab. Alternatively, use the GUI `pathtool`.
 
 #.  Add your code/make your modifications, committing to your fork.
 
@@ -30,6 +30,6 @@ If you are just trying to install:
 
 4. Clone the vibration toolbox repository to your favorite location on your drive where you want to work on it. You never want to clone again.
 
-#. Use Matlab's `addpath` command to add the vtoolbox directory to your installation of Matlab
+#. Use Matlab's `addpath` command to add the vtoolbox directory to your installation of Matlab. Alternatively, use the GUI `pathtool`.
 
 #. Sync to your computer (called `Fetch origin` in the new GitHub app.) to get updates.
