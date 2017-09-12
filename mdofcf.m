@@ -33,15 +33,19 @@ function [z,nf,u]=mdofcf(f,TF,Fmin,Fmax)
 %   plot(Freq,20*log10(abs(Recep1)))
 %   Recep=[Recep1 Recep2];
 %   Recep=Recep+.1*randn(size(Recep))+i*.1*randn(size(Recep));
-%   [z,nf,u]=mdofcf(Freq,Recep,.1,.12);
-%   z(1,1)=z;
-%   lambda(1,1)=(nf*2*pi)^2;
+%   % Curve fit first peaks
+%   mdofcf(Freq,Recep,.1,.12); % Plot fits. 
+%   [z1,nf1,u1]=mdofcf(Freq,Recep,.1,.12);
+%   z(1,1)=z1;
+%   lambda(1,1)=(nf1*2*pi)^2;
 %   
-%   S(:,1)=real(u);%/abs(sqrt(u(1)));
-%   [z,nf,u]=mdofcf(Freq,Recep,.16,.25);
-%   z(2,2)=z;
-%   lambda(2,2)=(nf*2*pi)^2;
-%   S(:,2)=real(u);%/abs(sqrt(u(1)));
+%   S(:,1)=real(u1);%/abs(sqrt(u1(1)));
+%   % Curve fit second peaks
+%   mdofcf(Freq,Recep,.16,.25); % Plot fits
+%   [z2,nf2,u2]=mdofcf(Freq,Recep,.16,.25);
+%   z(2,2)=z2;
+%   lambda(2,2)=(nf2*2*pi)^2;
+%   S(:,2)=real(u2);%/abs(sqrt(u2(1)));
 %   dampingratios=diag(z)
 %   naturalfrequencies=sqrt(diag(lambda))/2/pi
 %   M=M
@@ -195,7 +199,7 @@ clf
 	plot(f,20*log10(abs(XoF)),f,20*log10(abs(TF(:,mm))))
 
 	as=axis;
-	legend('Identified FRF','Experimental FRF',0)
+	legend('Identified FRF','Experimental FRF')
 	min(f);
 	axis([Fmin Fmax as(3) as(4)])
 	title(['Frequency Response Function ' num2str(mm) ' Fit'])
@@ -221,7 +225,7 @@ clf
 	plot(f,phase2,f,phase)
 	xlabel('Frequency (Hz)')
 	ylabel('Phase (deg)')
-	legend('Identified FRF','Experimental FRF',0)
+	legend('Identified FRF','Experimental FRF')
 	
 	axis([Fmin Fmax  phmin_max(1) phmin_max(2)])
 	gridmin_max=round(phmin_max/90)*90;
@@ -230,6 +234,6 @@ clf
 	zoom on
 	drawnow
 	figure(gcf)
-			disp(['DOF ' num2str(mm) ' of ' num2str(size(a,2)) '. Press return to plot next curve-fit FRF or end.'])
+	disp(['DOF ' num2str(mm) ' of ' num2str(size(a,2)) '. Press return to plot next curve-fit FRF or end.'])
 end
 end
