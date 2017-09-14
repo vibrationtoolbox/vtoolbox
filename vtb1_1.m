@@ -3,7 +3,7 @@ function vtb1_1(m,c,k,x0,v0,tf)
 %VTB1_1 Free response of a single degree of freedom system.
 % VTB1_1(m,c,k,x0,v0,tf) plots the free response of a single degree 
 % of freedom system.  The arguments x0 and v0 represent the initial 
-% conditions and tf represents the total time of the response. The
+% conditiojnlkh lugfjy l ns and tf represents the total time of the response. The
 % system is described by mass m, damping c, and stiffness k.
 % VTB1_1(zeta,w,x0,v0,tf) plots the free response of a single degree 
 % of freedom system.  The arguments x0 and v0 represent the initial 
