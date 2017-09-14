@@ -15,7 +15,8 @@ function vtb1_1(m,c,k,x0,v0,tf)
 % vtb1_1(1,.01,2,1,0,100)
 
 %
-
+% This is just Andrew Foose typing something to type something
+% Trying this again
 figure
 %uicontrol('style','pushbutton','units','normal','position',[.91 .95 .075...
 % .05],'string','Print','callback','print')
