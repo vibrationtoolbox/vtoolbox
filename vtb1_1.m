@@ -21,6 +21,7 @@ figure
 % .05],'string','Print','callback','print')
 %uicontrol('style','pushbutton','units','normal','position',[.91 .89 .075...
 % .05],'string','Close','callback','delete(gcf)')
+%hello
 
 % This loop determines which type of input format you are using.
 if nargin==5
