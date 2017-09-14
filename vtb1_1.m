@@ -1,6 +1,5 @@
 %% Lekhraj
 
-% vtb1_1(1,.01,2,1,0,100)
 function vtb1_1(m,c,k,x0,v0,tf)
 
 
