@@ -97,9 +97,6 @@ if h>TT/20
 end
 
 n=length(t);
-%if n<100;
-%    t=min(t):(max(t)-min(t))/500:max(t);
-%end
 
 z=zeros(2,length(t));
 z(:,1)=[x0;v0];
@@ -115,28 +112,19 @@ for l1=1:(n-1);
    x=xx;
    v=vv;
    k1=h*[v;eval(rkf)];
-%   k1=h*feval(rkf,z1,u1,t(l1))
 
    x=xx+k1(1)/2;
    v=vv+k1(2)/2;
    k2=h*[v;eval(rkf)];
-%   k2=h*feval(rkf,z1+.5*k1,u1,t(l1)+.5*h)
 
    x=xx+k2(1)/2;
    v=vv+k2(2)/2;
    k3=h*[v;eval(rkf)];
-%   k3=h*feval(rkf,z1+.5*k2,u1,t(l1)+.5*h)
 
    x=xx+k3(1);
    v=vv+k3(2);
    k4=h*[v;eval(rkf)];
-%   k4=h*feval(rkf,z1+k3,u1,t(l1)+h)
-      %pause
 
-%    k1=h*feval(rkf,z1,u1,t(l1));
-%    k2=h*feval(rkf,z1+.5*k1,u1,t(l1)+.5*h);
-%    k3=h*feval(rkf,z1+.5*k2,u1,t(l1)+.5*h);
-%    k4=h*feval(rkf,z1+k3,u1,t(l1)+h);
    z(:,l1+1)=z(:,l1)+1/6*(k1+2*k2+2*k3+k4);
 end
 
@@ -145,5 +133,6 @@ v=z(2,:);
 t=tt;
 end
 
-%Automatically check for updates
+
+
 vtbchk
