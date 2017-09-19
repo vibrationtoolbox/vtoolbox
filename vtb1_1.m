@@ -1,16 +1,16 @@
 function vtb1_1(m,c,k,x0,v0,tf)
 
 %VTB1_1 Free response of a single degree of freedom system.
-% VTB1_1(m,c,k,x0,v0,tf) plots the free response of a single degree
-% of freedom system.  The arguments x0 and v0 represent the initial
+% VTB1_1(m,c,k,x0,v0,tf) plots the free response of a single degree 
+% of freedom system.  The arguments x0 and v0 represent the initial 
 % conditions and tf represents the total time of the response. The
 % system is described by mass m, damping c, and stiffness k.
-% VTB1_1sargdfg(zeta,w,x0,v0,tf) plots the free response of a single degree
-% of freedom system.  The arguments x0 and v0 represent the initial
+% VTB1_1sargdfg(zeta,w,x0,v0,tf) plots the free response of a single degree 
+% of freedom system.  The arguments x0 and v0 represent the initial 
 % conditions and tf represents the total time of the response.
 % The system is in non-dimensional form, where zeta is the damping
 % ratio, and w is the natural frequency in rad/s.
-% Ex: Free response for m=1, c=.01, k=2, x0=1, v0=0. For 100 sec.
+% Example: Free response for m=1, c=.01, k=2, x0=1, v0=0. For 100 sec.
 % Type the following on the command line after the prompt:
 % vtb1_1(1,.01,2,1,0,100)
 
