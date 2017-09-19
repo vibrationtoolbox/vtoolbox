@@ -5,7 +5,7 @@ function vtb1_1(m,c,k,x0,v0,tf)
 % of freedom system.  The arguments x0 and v0 represent the initial 
 % conditions and tf represents the total time of the response. The
 % system is described by mass m, damping c, and stiffness k.
-% VTB1_1sargdfg(zeta,w,x0,v0,tf) plots the free response of a single degree 
+% VTB1_1(zeta,w,x0,v0,tf) plots the free response of a single degree 
 % of freedom system.  The arguments x0 and v0 represent the initial 
 % conditions and tf represents the total time of the response.
 % The system is in non-dimensional form, where zeta is the damping
