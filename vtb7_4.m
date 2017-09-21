@@ -34,14 +34,14 @@ function [z,nf,u]=vtb7_4(f,TF,Fmin,Fmax)
 %   Recep=[Recep1 Recep2];
 %   Recep=Recep+.1*randn(size(Recep))+i*.1*randn(size(Recep));
 %   % Curve fit first peaks
-%   mdofcf(Freq,Recep,.1,.12); % Plot fits. 
+%   vtb7_4(Freq,Recep,.1,.12); % Plot fits. 
 %   [z1,nf1,u1]=vtb7_4(Freq,Recep,.1,.12);
 %   z(1,1)=z1;
 %   lambda(1,1)=(nf1*2*pi)^2;
 %   
 %   S(:,1)=real(u1);%/abs(sqrt(u1(1)));
 %   % Curve fit second peaks
-%   mdofcf(Freq,Recep,.16,.25); % Plot fits
+%   vtb7_4(Freq,Recep,.16,.25); % Plot fits
 %   [z2,nf2,u2]=vtb7_4(Freq,Recep,.16,.25);
 %   z(2,2)=z2;
 %   lambda(2,2)=(nf2*2*pi)^2;
@@ -127,11 +127,11 @@ N=2;
 [x,w2d]=meshgrid(0:N,w);
 c=-w.^(N).*R;
 
-aa=[w2d(:,1+(0:N-1)).^x(:,1+(0:N-1)).*y(:,1+(0:N-1)) -w2d(:,1+(0:N)).^x(:,1+(0:N))];
+aa=[w2d(:,1:N).^x(:,1:N).*y(:,1:N) -w2d(:,1:(N+1)).^x(:,1:(N+1))];
 
 b=aa\c;
 
-rs=roots([1 b((N-1:-1:0)+1)']);
+rs=roots([1 b((N:-1:1))']);
 %stuff=[1 b((N-1:-1:0)+1)']
 %stuff=stuff(length(stuff):-1:1)
 %[xx,ee]=polyeig(stuff)
