@@ -1,29 +1,60 @@
-function [z,nf,a,com]=VTB7_4(f,TF,b)
-%[z,nf,a,com]=VTB7_4(f,TF) Curve fit to SDOF FRF.
-% f is the frequency vector in Hz. It does not have to
-%    start at 0 Hz.
-% TF is the complex transfer function.
+function [z,nf,u]=vtb7_4(f,TF,Fmin,Fmax)
+%[z,nf,u]=vtb7_4(f,FRF,Fmin,Fmax) Curve fit to MDOF FRF.
+% f is the frequency vector in Hz. 
+%
+% FRF are columns comprised of the FRFs presuming single input, multiple output
 % z and nf are the damping ratio and natural frequency (Hz)
-% a is the product of the residues of the coordinates the
-% transfer function is between. (For example, in the example
-% below, a1 times a2 is returned. See equation 7.42)
-% If com is returned as a real number, then it is the
-% compliance between the two coordinates.
-% Only one peak may exist in the segment of the FRF passed to
-% VTB7_4. No zeros may exist withing this segment. Otherwise,
-% curve fitting becomes unreliable.
+% u is the mode shape.
+% Only one peak may exist in the segment of the FRF passed to 
+% vtb7_4. No zeros may exist withing this segment. If so, 
+% curve fitting becomes unreliable. 
+%
+% If called without outputs, i.e.
+% vtb7_4(f,FRF,Fmin,Fmax)
+% The FRFs and the fit to them will be plotted instead of output being
+% returned. 
+%
+% If Fmin and Fmax are not entered, the min and max values in
+% f are used.
+%
+% If the first column of TF is a collocated (input and output location are
+% the same), then the mode shape returned is the mass normalized mode shape
+%
+% This can then be used to generate an identified mass, damping, and
+% stiffness matrix as shown in the following example.
 %
 % EXAMPLE:
-% M=eye(2);
-% K=[2 -1;-1 2];
-% C=.01*K;
-% [Freq,Recep,Mobil,Inert]=vtb7_5(M,C,K,1,2,linspace(0,.5,1024));
-% figure(1)
-% n=250;
-% f2=Freq((1:n)+450);
-% R2=Recep((1:n)+450);
-% R2=R2+.1*randn(n,1)+.1*randn(n,1)*i;% Poorly Simulated Noise
-% [z,nf,a,com]=vtb7_4(f2,R2)
+%   M=eye(2)*2;
+%   K=[2 -1;-1 2];
+%   C=.01*K;
+%   [Freq,Recep1,Mobil1,Inert1]=vtb7_5(M,C,K,1,1,linspace(0,.5,1024)); %Frequency response function between node 1 and itself
+%   [Freq,Recep2,Mobil2,Inert2]=vtb7_5(M,C,K,1,2,linspace(0,.5,1024)); %Frequency response function between node 1 and node 2
+%   figure(1)
+%   plot(Freq,20*log10(abs(Recep1)))
+%   Recep=[Recep1 Recep2];
+%   Recep=Recep+.1*randn(size(Recep))+i*.1*randn(size(Recep));
+%   % Curve fit first peaks
+%   mdofcf(Freq,Recep,.1,.12); % Plot fits. 
+%   [z1,nf1,u1]=vtb7_4(Freq,Recep,.1,.12);
+%   z(1,1)=z1;
+%   lambda(1,1)=(nf1*2*pi)^2;
+%   
+%   S(:,1)=real(u1);%/abs(sqrt(u1(1)));
+%   % Curve fit second peaks
+%   mdofcf(Freq,Recep,.16,.25); % Plot fits
+%   [z2,nf2,u2]=vtb7_4(Freq,Recep,.16,.25);
+%   z(2,2)=z2;
+%   lambda(2,2)=(nf2*2*pi)^2;
+%   S(:,2)=real(u2);%/abs(sqrt(u2(1)));
+%   dampingratios=diag(z)
+%   naturalfrequencies=sqrt(diag(lambda))/2/pi
+%   M=M
+%   Midentified=S'\eye(2)/S%Make Mass matrix
+%   K=K
+%   Kidentified=S'\lambda/S%Make Stiffness Matrix
+%   C=C
+%   Cidentified=S'\(2*z*sqrt(lambda))/S%Make damping matrix
+
 %
 % Note that by changing the parts of Freq and Recep used
 % We can curve fit to other modes.
@@ -31,158 +62,178 @@ function [z,nf,a,com]=VTB7_4(f,TF,b)
 % Copyright Joseph C. Slater, 10/8/99
 % Updated 11/8/99 to improve robustness
 % Updated 1/1/00 to improve robustness
+% Updated 4/1/01 from vtb7_4 to linear curve fitting.
+% Updated 5/1/01 to start adding MDOF.
+% Updated 5/15/01 to include frequency range for curve fitting
+% Updated 11/13/07 to mass normalize mode shapes
+% Updated 11/13/07 example to demonstrate ID of system matrices
 
-disp('This code is deprecated. Please use mdofcf or sdofcf.')
-return
-global XoF
+%disp('This is beta software written 07-May-2001')
+%disp('This code may not be used by anyone not authorized by J. Slater')
+%disp('This code will expire 15-Jun-2001')
 
-if nargin==2
-	[y,in]=max(abs(TF));
-	lf=length(f);
-	f(in);
-	%in=in-6;
-	odr=f*2*pi;
-    fitnums=(in-5:in+5);% fit only a few points
+%if datenum('10-Jun-2001')<datenum(date)
+%	warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p will expire 15-Jun-2003')	
+%end
 
-	p=polyfit(real(TF(fitnums)),odr(fitnums),1);
 
-	omegan=polyval(p,0);
-	in=in-2;
+% if datenum('15-Jun-2004')<datenum(date)
+% 	delete mdofcd.p
+% 	warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p has expired')	
+% end
 
-	while abs(real(TF(in+1)))<abs(real(TF(in)))
-		in=in+1;
+inlow=1;
+inhigh=length(f);
+
+if nargin==4
+inlow=floor(length(f)*(Fmin-min(f))/(max(f)-min(f)))+1;
+
+inhigh=ceil(length(f)*(Fmax-min(f))/(max(f)-min(f)))+1;
+end
+
+if f(inlow)==0
+ inlow=2;
+end
+f=f(inlow:inhigh,:);
+TF=TF(inlow:inhigh,:);
+
+% Reduce to single FRF for finding poles:
+[y,in]=max(abs(TF));
+in=in(1);
+R=(TF');
+[U,S,V]=svd(R);
+T=U(:,1);
+Hp=(T')*R;
+R=(Hp');
+
+% End reduction (whole thing is still stored in TF)
+
+ll=length(f);
+w=f*2*pi*sqrt(-1);
+w2=w*0;
+R3=R*0;
+for i=1:ll
+	R3(i)=conj(R(ll+1-i));
+	w2(i)=conj(w(ll+1-i));
+	TF2(i,:)=conj(TF(ll+1-i,:));
+end
+w=[w2;w];
+R=[R3;R];
+
+n=1;
+N=2*n;
+N=2;
+[x,y]=meshgrid(0:N,R);
+[x,w2d]=meshgrid(0:N,w);
+c=-w.^(N).*R;
+
+aa=[w2d(:,1+(0:N-1)).^x(:,1+(0:N-1)).*y(:,1+(0:N-1)) -w2d(:,1+(0:N)).^x(:,1+(0:N))];
+
+b=aa\c;
+
+rs=roots([1 b((N-1:-1:0)+1)']);
+%stuff=[1 b((N-1:-1:0)+1)']
+%stuff=stuff(length(stuff):-1:1)
+%[xx,ee]=polyeig(stuff)
+
+[srs,irs]=sort(abs(imag(rs)));
+
+rs=rs(irs);
+
+omega=abs(rs(2));
+z=-real(rs(2))/abs(rs(2));
+nf=omega/2/pi;
+
+% This section now gets repeated for each FRF. Still needs to be done for MDOF, to make a matrix a.
+%rs
+%rs
+%XoF=[1./(w-rs(1)) 1./(w-rs(2)) 1./(w.^0) 1./w.^2];%;1./w2d(:,[1 3])];
+%XoF1=[1./(w-rs(1)) 1./(w-rs(2))];
+%Nov 07 Fix to get residue matrix (see text)
+XoF1=[1./((rs(1)-w).*(rs(2)-w))];
+XoF2=1./(w.^0);
+XoF3=1./w.^2;
+XoF=[XoF1 XoF2 XoF3];
+
+%for i=1:
+TF3=[TF2;TF];
+
+%plot(unwrap(angle(TF3)))
+a=XoF\TF3;
+%size(XoF1)
+
+%tfplot(imag(w/2/pi),XoF1)
+
+%size(w)
+%plot(abs(w)),pause
+%tfplot(f,TF)
+%tfplot(f,[a*Rest,R])
+%size(XoF)
+u=a(1,:)';
+u=u/sqrt(abs(a(1,1)));
+%u=u/u(1);
+%u=u/norm(u);
+R=XoF;
+if nargout<3
+for mm=1:size(a,2)
+
+	if mm>1
+
+		pause
 	end
-%    fitnums=(in-5:in+5);
-	p=polyfit(odr(fitnums),atan2(imag(TF(fitnums)),real(TF(fitnums))),1);
+clf
+	figure(gcf)
+	XoF=R((ll+1:2*ll),:)*a(:,mm);
+	%plot([abs(XoF) abs(TF)])
+	%2*ll
+	%plot(abs(w(ll:2*ll)))
+	%pause
+	%break
 
-	odr(in);
+	Fmin=min(f);
+	Fmax=max(f);
+	phase=unwrap(angle(TF(:,mm)))*180/pi;
+	phase2=unwrap(angle(XoF))*180/pi;size(phase);
+	%size(XoF)
+	subplot(2,1,1)
+	plot(f,20*log10(abs(XoF)),f,20*log10(abs(TF(:,mm))))
 
-	z=-1/p(1)/omegan;
-	if z>.02
-		lin=in-15;hin=in+15;
-		if lin<1
-			lin=1
-		end
-		if hin>lf
-			hin=lf
-		end
+	as=axis;
+	legend('Identified FRF','Experimental FRF')
+	min(f);
+	axis([Fmin Fmax as(3) as(4)])
+	title(['Frequency Response Function ' num2str(mm) ' Fit'])
+	xlabel('Frequency (Hz)')
+	ylabel('Mag (dB)')
 
-	    fitnums=(lin:hin);
-		p=polyfit(odr(fitnums),atan2(imag(TF(fitnums)),real(TF(fitnums))),1);
-		z=-1/p(1)/omegan;
-	end
-%	omegaguess=2*pi*f(in)/sqrt(1-z^2)
-	omegaguess=omegan;
-	a0=abs(TF(1))*(2*pi*f(in))^2;
-%	z=.0005;
-	a0=-sign(imag(TF(in)))*abs(TF(in))*2*z*(2*pi*f(in))^2;TF(in);
-	x=[a0;z;omegaguess;0;0;0];%sign(real(TF(1)))*
-	%x2=x;%
-	%cost=vtb7_4(x,f,TF)
-	if in-3<1|in+2>length(f)
-		disp('The peak response must be near the middle of the data')
-		disp('Please center your peak and try again')
-		return
-	end
+	grid on
+	zoom on
 
-	x;
-	x=fmins('vtb7_4',x,[],[],f(in-3:in+2),TF(in-3:in+2));
-    x;
-	cferr(x,f,TF);	%x
-	%cost=vtb7_4(x,f,TF)
-	x=fmins('vtb7_4',x,[],[],f,TF);
-	x;
-	%cost=vtb7_4(x,f,TF)
-	x=fmins('vtb7_4',x,[],[],f,TF);
-	x;
-	%cost=vtb7_4(x,f,TF)
-	%x=fmins('vtb7_4',x,[],[],f,TF);
-	%x
-	%cost=vtb7_4(x,f,TF)
-	%x=fmins('vtb7_4',x,[],[],f,TF);
-	%x
-	%cost=vtb7_4(x,f,TF)
-	%x=x2
-	z=x(2);om=x(3);
-	%z,om
-	if f(1)==0
-		k=x(4)+x(1)/om^2;
-	else
-		k=sqrt(-1);
-	end
-	com=k;
-	nf=om/2/pi;%*2*pi;
-	a=x(1);
-	%plot(f,20*log10(abs(XoF)),'g',f,20*log10(abs(TF)))
-	%grid on
-	%zoom on
-	if 1==1
-	  Fmin=min(f);
-	  Fmax=max(f);
-	  phase=unwrap(angle(TF))*180/pi;
-	  phase2=unwrap(angle(XoF))*180/pi;size(phase);
-		%size(XoF)
-	  subplot(2,1,1)
-	  plot(f,20*log10(abs(XoF)),f,20*log10(abs(TF)))
-	  as=axis;
-	  zoom on
-	  legend('Identified FRF','Experimental FRF',0)
-	  axis([Fmin Fmax as(3) as(4)])
-	  xlabel('Frequency (Hz)')
-	  ylabel('Mag (dB)')
-	  grid on
+	drawnow
+
 	%  Fmin,Fmax,min(mag),max(mag)
 	%  axis([Fmin Fmax minmag maxmag])
-	  while phase2(in)>50
-		  phase2=phase2-360;
-	  end
-	  phased=phase2(in)-phase(in);
-	  phase=phase+round(phased/360)*360;
-	  phmin_max=[floor(min(min([phase;phase2]))/45)*45 ceil(max(max([phase;phase2]))/45)*45];
-	  subplot(2,1,2)
-	  plot(f,phase2,f,phase)
-	  xlabel('Frequency (Hz)')
-	  ylabel('Phase (deg)')
-	  legend('Identified FRF','Experimental FRF',0)
-
-	  grid on
-	  axis([Fmin Fmax  phmin_max(1) phmin_max(2)])
-	  gridmin_max=round(phmin_max/90)*90;
-	  set(gca,'YTick',gridmin_max(1):22.5:gridmin_max(2))
-	  zoom on
-
-  end
-else
-%	global  XoF
-%f,TF,b
-    x=f;
-	f=TF;
-	TF=b;
-	w2=f*2*pi;
-	lx=length(x);
-	x(3)=abs(x(3));
-	x(2)=abs(x(2));
-	XoF=x(lx-2)+x(lx-1)*i*w2-x(lx)*w2.^2;
-%	for j=1:(lx/3)-1
-	XoF=XoF+x(1)./(-w2.^2+2*x(2)*w2*i*x(3)+x(3)^2);
-%	end
-
-	vtb74=norm(XoF-TF);
-	z=vtb74;
+	%pause
+	
+	while phase2(in)>50
+	phase2=phase2-360;
+	end
+	phased=phase2(in)-phase(in);
+	phase=phase+round(phased/360)*360;
+	phmin_max=[floor(min(min([phase;phase2]))/45)*45 ceil(max(max([phase;phase2]))/45)*45];
+	subplot(2,1,2)
+	plot(f,phase2,f,phase)
+	xlabel('Frequency (Hz)')
+	ylabel('Phase (deg)')
+	legend('Identified FRF','Experimental FRF')
+	
+	axis([Fmin Fmax  phmin_max(1) phmin_max(2)])
+	gridmin_max=round(phmin_max/90)*90;
+	set(gca,'YTick',gridmin_max(1):22.5:gridmin_max(2))
+	grid on
+	zoom on
+	drawnow
+	figure(gcf)
+	disp(['DOF ' num2str(mm) ' of ' num2str(size(a,2)) '. Press return to plot next curve-fit FRF or end.'])
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function cferr=cferr(x,f,TF)
-global  XoF
-w2=f*2*pi;
-lx=length(x);
-
-XoF=x(lx-2)+x(lx-1)*i*w2-x(lx)*w2.^2;
-for j=1:(lx/3)-1
-XoF=XoF+x(3*j-2)./(-w2.^2+2*x(3*j-1)*w2*i*x(3*j)+x(3*j)^2);
 end
-
-cferr=norm(XoF-TF);
-%pause
-
-%Automatically check for updates
-vtbchk
