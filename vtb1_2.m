@@ -13,7 +13,7 @@ function [x,xd]=vtb1_2(n,dt,x0,xd0,a,b,c)
 %    and v0 is the initial velocity. The remaining parameters 
 %    are as described above.
 %  The outputs are in the form of a matrix where each column 
-%  represents the states a one time step and the rows represent 
+%  represents the states at one time step and the rows represent 
 %  a state as a function of time.
 %       Example
 %       a=[0 1;-1 -.1]; % Creates state matrix.
@@ -35,14 +35,14 @@ if nargin==7
 end
 
 % -----------------------------------------------
-%             Where the action be at.
+%             Where the action is.
 % -----------------------------------------------
 x(:,1)=x0;
 for i=2:1:n+1
   x(:,i)=a*dt*x(:,i-1)+x(:,i-1);
 end
 % -----------------------------------------------
-%             Where the action be finished.
+%             Where the action is finished.
 % -----------------------------------------------
 
 lx=length(a);

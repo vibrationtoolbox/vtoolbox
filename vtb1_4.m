@@ -11,7 +11,7 @@ function [x,xd]=vtb1_4(n,dt,x0,xd0,a,b,c,u)
 %    the mass matrix 'm', the stiffness matrix 'k', and the damping matrix 'd'.
 %    The remaining parameters are as described above.
 %  The outputs are in the form of a matrix where each column represents the 
-%  states a one time step and the rows represent a state as a function of time.
+%  states at one time step and the rows represent a state as a function of time.
 %  LSIM (when linear- also see vtb4_4) or VTB1_3 (not as good but works for
 %  nonlinear) will give better results. This code is for education
 %  only. 
