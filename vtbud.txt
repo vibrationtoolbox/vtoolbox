@@ -4,17 +4,17 @@ Updates to Engineering Vibration Toolbox since 1/1/98
 +--------+------------------+------------------------------------------------------------------------------+
 |Date    |code/s            |change                                                                        |
 +========+==================+==============================================================================+
-|09/14/17|sdofcf            |Remove sdofcf.                                                                |                                                                         |
+|09/14/17|sdofcf            |Remove sdofcf.                                                                |                                                                         
 +--------+------------------+------------------------------------------------------------------------------+
-|09/14/17|vtb7_4            |Replaced by higher fidelity mdofcf code.                                      |                                                                         |
+|09/14/17|vtb7_4            |Replaced by higher fidelity mdofcf code.                                      |                                                                         
 +--------+------------------+------------------------------------------------------------------------------+
-|09/12/17|mdofcf            |updated example                                                               |                                                                         |
+|09/12/17|mdofcf            |updated example                                                               |                                                                         
 +--------+------------------+------------------------------------------------------------------------------+
-|09/12/17|mdofcf, sdofcf    |added to library. will be formally merged in the future.                      |                                                                         |
+|09/12/17|mdofcf, sdofcf    |added to library. will be formally merged in the future.                      |                                                                         
 +--------+------------------+------------------------------------------------------------------------------+
-|09/07/17|vtbud             |vtbud was deleting folder before path. Reverse order to preclude error.       |                                                                         |
+|09/07/17|vtbud             |vtbud was deleting folder before path. Reverse order to preclude error.       |                                                                         
 +--------+------------------+------------------------------------------------------------------------------+
-|09/07/17|vtb7_4            |warning to deprecate malfunctioning code                                      |                                                                        |
+|09/07/17|vtb7_4            |warning to deprecate malfunctioning code                                      |                                                                        
 +--------+------------------+------------------------------------------------------------------------------+
 |02/21/16|vtbchk            |vtbchk was looking in the wrong place for update time stamps still. Moved to  |         
 |        |                  |github                                                                        |
