@@ -16,7 +16,7 @@ if nargin==2
   v=real(v/vnorms);
 end
 if nargin==3
-  if norm(d/m*k-k/m*d) < 1e-8*norm(k/m*d)
+    norm(d/m*k-k/m*d) < 1e-8*norm(k/m*d)
     disp('Damping is proportional, eigenvectors are real.')
     [v,w]=eig(m\k);
     w=sqrt(diag(w));
@@ -26,16 +26,14 @@ if nargin==3
     vnorms=sqrt(v'*m*v);	
     v=real(v/vnorms);
     zeta=diag((v'*m*v)\(v'*d*v)/2/diag(w));
-   else
+end
+
     disp('Damping is non-proportional, eigenvectors are complex.')
     a=[0*k eye(length(k));-m\k -m\d];
     [v,w1]=eig(a);
     w=abs(w1);
     zeta=-real(w1)/w;
-  end
 end
 
 %if nargout==3;zeta=diag(zeta);end
 
-%Automatically check for updates
-vtbchk
