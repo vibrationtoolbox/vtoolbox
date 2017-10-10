@@ -15,7 +15,7 @@
 %          Note the differences between experimental
 %          data and what you would expect from theory.
 % VTB7_4   Curve fit to a FRF. Used in modal analysis
-% VTB7_5   Transfer Function from second order system matrices.
+% VTB7_5   Frequency Response Function from second order system matrices.
 % VTB7_6   Matrix iteration + deflation solution of large eigenvalue
 %          problems.
 
