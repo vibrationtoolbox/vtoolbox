@@ -36,6 +36,7 @@ function [ap,bp]=vtb3_3(dat,t,n)
 
 
 % Copyright Joseph C. Slater, Dec 1996
+% Revised 10/20/17 - Fixed legend error created by Mathworks change
 % Revised 10/20/11 - Added example. 
 % Revised 02/29/00 - Now can run with no arguments.
 % Revised 11/11/98 - Example changed to match default function 
@@ -84,20 +85,18 @@ else
   datapprox=a(1)/2+zeros(size(dat));
   plot(t,dat,t,datapprox)
   grid on
-  %aa=version;ll=length(aa);
-  grid on
-  %context=['Contribution of terms n=' num2str(i-1)];
+
+
   legend('Function','New Approximation')
   if nargout==0
     disp('Press ''enter'' to advance')
     pause
   end
-  
+  fig_num = figure;
   for ii=2:n+1
-    %  a(ii)
-    %  b(ii-1)
     newdat=a(ii)*cos(tp*(ii-1))+b(ii-1)*sin(tp*(ii-1));
     datapprox=datapprox+newdat;
+    
     if nargout==0
       %legend off
       plot(t,dat,t,datapprox,'o',t,datapprox-newdat,'x',t,newdat)
@@ -105,7 +104,8 @@ else
       %aa=version;ll=length(aa);
       grid on
       context=['Contribution of terms n=' num2str(ii-1)];
-      legend('Function','New Approximation','Old Approximation',context,0)
+      legend('Function','New Approximation','Old Approximation')%,context,0)
+      figure(fig_num);
       pause
     end
   end
@@ -114,7 +114,7 @@ else
   plot(t,dat,t,datapprox),grid on
   
   legend('Function','Approximation')
-  %aa=version;ll=length(aa);
+  figure(fig_num);
   
   if nargout~=0
     ap=a(1:n+1);bp=b(1:n);
