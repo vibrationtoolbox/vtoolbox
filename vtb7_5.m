@@ -1,5 +1,5 @@
 function [freqout,recep,mobil,inert]=vtb7_5(M,D,K,numin,numout,freq)
-%VTB7_5 Transfer Function from second order system matrices.
+%VTB7_5 Frequency Response Function from second order system matrices.
 % [Freq,Recep,Mobil,Inert] = VTB7_5(M,D,K,NUMIN,NUMOUT,Freq) 
 % returns the Compliance, Mobility, and Inertance Transfer 
 % Functions (FRF) between a force at degree of freedom 
@@ -8,7 +8,7 @@ function [freqout,recep,mobil,inert]=vtb7_5(M,D,K,numin,numout,freq)
 % repectively. Freq is a vector of frequencies over which
 % the evaluated transfer function is desired (in Hz).
 %
-% VTB7_5(M,D,K,NUMIN,NUMOUT,Freq) plots the Transfer Functions 
+% VTB7_5(M,D,K,NUMIN,NUMOUT,Freq) plots the Frequency Response Functions 
 % if there are no output arguments.  Click in the region of 
 % interest to zoom in.  Each click will double the size of 
 % the plot. Double click to return to full scale.
