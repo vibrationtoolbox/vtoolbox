@@ -2,7 +2,7 @@ function [ap,bp]=vtb3_3(dat,t,n)
 %VTB3_3  Fourier series approximation to a function.
 %[a,b]=VTB3_3(dat,t,n) returns Fourier coefficients of a function
 %  The coefficients are numerical approximations of the true
-%  coefficients.
+%  coefficients of equation (3.20) in Inman's Engineering Vibration
 %    dat is a vector of data representing the function
 %    t   is the corresponding time vector
 %    n   is the desired number of terms to use in the Fourier series
@@ -21,6 +21,10 @@ function [ap,bp]=vtb3_3(dat,t,n)
 % f=2*(t<0.5);
 % [a,b]=vtb3_3(f,t,15);
 % vtb3_3(f,t,15)
+%  Example 3: (ex:1.3.1 from Vibration Testing by Dr Joseph Slater)
+ +%  Find the Fourier series of the function x(t) with a period of 4 sec where 
+ +%  x(t)={1, 0<t<2 and 0, 2<t<4 ................
+ +%  vtb3_5(1/2,0,0,'(2)/(pi*n)',0,50,4,1)
 %
 % VTB3_3(N) displays the N term Fourier approximation to a 
 % triangular input.  The approximation is plotted versus time 

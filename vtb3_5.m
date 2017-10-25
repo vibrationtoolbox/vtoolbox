@@ -1,7 +1,9 @@
 function vtb3_5(a0,aodd,aeven,bodd,beven,N,T,o)
 %VTB3_5  Plot Fourier Series Approximation of Function.
 %  VTB3_5(a0,a,b,N,T,o) Plot the Fourier series defined by:
-%  N is the number of terms. Other arguments as defined by Inman's text. 
+%  N is the number of terms. Other arguments as defined by Inman's text.
+%  Note that definitions for these constants can vary from other documents.
+%
 %  a and b should ideally be strings as shown in the example.
 %  VTB3_5(a0,aodd,aeven,bodd,beven,N,T,o) Plot the Fourier with differing
 %  even and odd values. 
