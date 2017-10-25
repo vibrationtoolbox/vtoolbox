@@ -4,19 +4,21 @@ Updates to Engineering Vibration Toolbox since 1/1/98
 +--------+------------------+------------------------------------------------------------------------------+
 |Date    |code/s            |change                                                                        |
 +========+==================+==============================================================================+
-|09/14/17|sdofcf            |Remove sdofcf.                                                                |                                                                         |
+|10/20/17|vtb3_3            |Correct error caused by Mathworks changing behavior of legend                 |                                                                         |
 +--------+------------------+------------------------------------------------------------------------------+
-|09/14/17|vtb7_4            |Replaced by higher fidelity mdofcf code.                                      |                                                                         |
+|09/14/17|sdofcf            |Remove sdofcf                                                                 |                                                                         |
 +--------+------------------+------------------------------------------------------------------------------+
-|09/12/17|mdofcf            |updated example                                                               |                                                                         |
+|09/14/17|vtb7_4            |Replaced by higher fidelity mdofcf code.                                      |
 +--------+------------------+------------------------------------------------------------------------------+
-|09/12/17|mdofcf, sdofcf    |added to library. will be formally merged in the future.                      |                                                                         |
+|09/12/17|mdofcf            |updated example                                                               |
 +--------+------------------+------------------------------------------------------------------------------+
-|09/07/17|vtbud             |vtbud was deleting folder before path. Reverse order to preclude error.       |                                                                         |
+|09/12/17|mdofcf, sdofcf    |added to library. will be formally merged in the future.                      |
 +--------+------------------+------------------------------------------------------------------------------+
-|09/07/17|vtb7_4            |warning to deprecate malfunctioning code                                      |                                                                        |
+|09/07/17|vtbud             |vtbud was deleting folder before path. Reverse order to preclude error.       |
 +--------+------------------+------------------------------------------------------------------------------+
-|02/21/16|vtbchk            |vtbchk was looking in the wrong place for update time stamps still. Moved to  |         
+|09/07/17|vtb7_4            |warning to deprecate malfunctioning code                                      |
++--------+------------------+------------------------------------------------------------------------------+
+|02/21/16|vtbchk            |vtbchk was looking in the wrong place for update time stamps still. Moved to  |
 |        |                  |github                                                                        |
 +--------+------------------+------------------------------------------------------------------------------+
 |02/20/16|vtbchk            |str2num should have been num2str                                              |
@@ -201,4 +203,3 @@ Run vtbud to compare your version to the most current one.
 
 More information is available at the Engineering Vibration Toolbox
 website: http://www.cecs.wright.edu/~vtoolbox
-
