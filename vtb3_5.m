@@ -20,6 +20,10 @@ function vtb3_5(a0,aodd,aeven,bodd,beven,N,T,o)
 %
 %  vtb3_5(0,'-8/pi^2/n^2',0,0,0,20,10)
 
+%  Example 3: (ex:1.3.1 from Vibration Testing by Dr Joseph Slater)
+%  Find the Fourier series of the function x(t) with a period of 4 sec where 
+%  x(t)={1, 0<t<2 and 0, 2<t<4 ................
+%  vtb3_5(1/2,0,0,'(2)/(pi*n)',0,50,4,1)
 
 % Copyright Joseph C. Slater, Dec 2006
 % Revised Nov, 2007 to simplify use with differing even and odd values
@@ -109,7 +113,7 @@ if nargin>0
 	end
 	%dt=max([dt T/10000])
 	t=0:dt:T*3;length(t);
-	F=0*t+eval(a0)/2;
+	F=0*t+eval(a0);
 	for n=1:N
 		if nargin>6
 			if floor(n/2)==n/2
