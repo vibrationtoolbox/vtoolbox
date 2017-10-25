@@ -86,7 +86,7 @@ TT=2*pi/sqrt(kom);
 h=t(2)-t(1);
 
 if h>TT/20
-    disp(['You should probably have uses a smaller time step. It has been reduced to ' num2str(TT/20) '.'])
+    disp(['You should probably have used a smaller time step. It has been reduced to ' num2str(TT/20) '.'])
     x=[];v=[];
     if norm(u)>1e-14
     return
