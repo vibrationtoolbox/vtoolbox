@@ -1,5 +1,7 @@
 function vtb1_1(m,c,k,x0,v0,tf)
 
+% James McBean 9/14/17
+
 %VTB1_1 Free response of a single degree of freedom system.
 % VTB1_1(m,c,k,x0,v0,tf) plots the free response of a single degree 
 % of freedom system.  The arguments x0 and v0 represent the initial 
