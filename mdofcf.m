@@ -1,6 +1,6 @@
 function [z,nf,u]=mdofcf(f,TF,Fmin,Fmax)
 %[z,nf,u]=mdofcf(f,FRF,Fmin,Fmax) Curve fit to MDOF FRF.
-% f is the frequency vector in Hz. 
+% f is the frequenc vector in Hz. 
 %
 % FRF are columns comprised of the FRFs presuming single input, multiple output
 % z and nf are the damping ratio and natural frequency (Hz)
