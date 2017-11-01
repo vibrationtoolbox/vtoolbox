@@ -14,7 +14,7 @@ function vtb1_1(m,c,k,x0,v0,tf)
 % Type the following on the command line after the prompt:
 % vtb1_1(1,.01,2,1,0,100)
 
-%  description
+% Good description
 
 figure
 %uicontrol('style','pushbutton','units','normal','position',[.91 .95 .075...
