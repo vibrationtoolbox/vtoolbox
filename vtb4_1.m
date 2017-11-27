@@ -3,7 +3,8 @@ function [P,w,S]=vtb4_1(M,K)
 %VTB4_1 Natural frequencies and eigenvectors for an undamped
 %system.
 % [P,w,S]=VTB4_1(M,K) will return the natural frequencies (w),
-% eigenvectors (P), and mode shapes (U) for an undamped system.  
+% eigenvectors (P), and mass normalized mode shapes (S = [u1, u2...]) 
+% for an undamped system.  
 % The inputs are the mass matrix M and the stiffness matrix K.  
 % [P,w,S]=VTB4_1(M,K,1) will also print the output of the function
 % to the screen.
