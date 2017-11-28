@@ -1,5 +1,4 @@
-function vtb5
-% VTB5
+% Directory of chapter 5 toolbox codes.
 %
 % VTB5_1 Transmissibility ratio of a SDOF system.
 % VTB5_2 Base excitation force transmissibility for a SDOF system.

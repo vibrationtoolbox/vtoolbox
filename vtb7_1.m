@@ -1,6 +1,6 @@
 function VTB7_1
-%VTB7_1 is an example of taking a power spectral density
-% of data. The power spectral density of a signal containing
+% Demonstration script of obtaining power spectrum density 
+% The power spectral density of a signal containing
 % .5 Hz and 1.59 Hz signals is plotted.
 
 t=0:.1:100;t=t';

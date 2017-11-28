@@ -1,6 +1,4 @@
-function vtb6
-
-% VTB6
+% Directory of chapter 6 toolbox codes.
 %
 % VTB6_1 Natural frequencies and mode shapes of a uniform bar.
 % VTB6_2 Torsional natural frequencies and mode shapes of a 

@@ -1,6 +1,4 @@
-function vtb4
-
-% VTB4
+% Directory of chapter 4 toolbox codes.
 %
 % VTB4_1 Natural frequencies and eigenvectors for an undamped
 %        system.

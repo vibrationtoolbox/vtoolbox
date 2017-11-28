@@ -1,4 +1,5 @@
-% VTB1
+function vtb1()
+% Directory of chapter 1 toolbox codes. 
 %
 % VTB1_1 plots the free response of a single-degree of freedom
 %        system.

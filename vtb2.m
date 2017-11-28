@@ -1,4 +1,4 @@
-% VTB2
+% Directory of chapter 2 toolbox codes.
 %
 % VTB2_1 plots the forced response of an undamped single degree
 %        of freedom system to a sinusoidal input.

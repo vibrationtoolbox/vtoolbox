@@ -1,8 +1,6 @@
 function [f,TXF]=VTB7_2(x,f,dt,n)
+%  Calculate frequency response function (H(iw)) from data
 
-%VTB7_2 
-%  [W,TF] = VTB7_2(x,f,dt,n)
-%  generates frequency response function (H(iw))
 %  dt is the time step of the sampled data
 %  n is the number of points in the fft.
 %  recommended value is 256 unless zooming

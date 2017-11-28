@@ -1,4 +1,4 @@
-% VTB7
+% Directory of chapter 7 toolbox codes.
 %
 % VTB7_1   is an example of finding a power spectral density
 %          of data. The power spectral density of a signal

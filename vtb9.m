@@ -1,9 +1,6 @@
-% VTB9
-% 
-% VTB9_1 solves for the natural frequencies, damping ratios, 
-%        and mode shapes of a linear second order matrix (LSOM)
-%        form system.  (M,C,K)
-%        NOTE: VTB9_1 will be replaced by VTB4_3 after Fall 2000
+% Directory of chapter 9 toolbox codes.
+%
+% VTB9_1 Deprecated
 % VTB9_2 numerically integrates to find the unforced response 
 %        of a system using Euler's method.  The system can
 %        be in state space or LSOM form.
