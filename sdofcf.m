@@ -9,7 +9,7 @@ function [z,nf,a]=sdofcf(f,TF,Fmin,Fmax)
 %        T=------------------
 %           1-r^2+2 zeta r j
 % Only one peak may exist in the segment of the FRF passed to 
-% sdofcf. No zeros may exist withing this segment. If so, 
+% sdofcf. No zeros may exist with in this segment. If so, 
 % curve fitting becomes unreliable. 
 % Fmin is the minimum frequency to be used for curve fitting in the
 % FRF
