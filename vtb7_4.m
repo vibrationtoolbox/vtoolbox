@@ -6,7 +6,7 @@ function [z,nf,u]=vtb7_4(f,TF,Fmin,Fmax)
 % z and nf are the damping ratio and natural frequency (Hz)
 % u is the mode shape.
 % Only one peak may exist in the segment of the FRF passed to 
-% vtb7_4. No zeros may exist withing this segment. If so, 
+% vtb7_4. No zeros may exist within this segment. If so, 
 % curve fitting becomes unreliable. 
 %
 % If called without outputs, i.e.

@@ -10,7 +10,7 @@ function [z,nf,a,com]=VTB7_4(f,TF,b)
 % If com is returned as a real number, then it is the 
 % compliance between the two coordinates. 
 % Only one peak may exist in the segment of the FRF passed to 
-% VTB7_4. No zeros may exist withing this segment. Otherwise, 
+% VTB7_4. No zeros may exist within this segment. Otherwise, 
 % curve fitting becomes unreliable.
 %
 % EXAMPLE:
