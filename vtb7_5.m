@@ -175,6 +175,3 @@ recep=tfunc1;
 mobil=tfunc2;
 inert=tfunc3;
 
-
-%Automatically check for updates
-vtbchk

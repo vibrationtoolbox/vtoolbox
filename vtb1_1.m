@@ -63,6 +63,3 @@ grid on
 
 zoom on
 
-
-%Automatically check for updates
-vtbchk

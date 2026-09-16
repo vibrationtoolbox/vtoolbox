@@ -37,7 +37,7 @@ Note to contributors
 
 To contribute to the toolbox, please fork this repository, clone to your desktop, and add the vtoolbox directory to your Matlab path.
 
-To submit a change, please see the document `Contributing.rst`.
+To submit a change, please see the document `CONTRIBUTING.rst`.
 
 Setting Up The Toolbox
 =======================

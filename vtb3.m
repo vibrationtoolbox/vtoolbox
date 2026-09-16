@@ -5,6 +5,3 @@
 % VTB3_3 Fourier Series estimation. 
 % VTB3_4 Response spectrum for a SDOF system.
 % VTB3_5 Plot Fourier Series.
-
-%Automatically check for updates
-vtbchk

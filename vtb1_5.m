@@ -83,6 +83,3 @@ ylabel('Displacement')
 title([ 'Displacement versus Time ' coefval])
 grid on
 zoom on
-
-%Automatically check for updates
-vtbchk

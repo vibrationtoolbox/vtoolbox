@@ -8,6 +8,3 @@
 %        damped vibration absorber design.
 % VTB5_6 Surface plot of the normalized amplitude of the primary
 %        mass for a damped absorber design. 
-
-%Automatically check for updates
-vtbchk

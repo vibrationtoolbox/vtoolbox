@@ -22,6 +22,3 @@ title('Power Spectral Density of F(t)')
 xlabel('Frequency (Hz)')
 ylabel('Power Spectral Density')
 pause
-
-%Automatically check for updates
-vtbchk

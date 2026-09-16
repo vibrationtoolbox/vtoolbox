@@ -3,8 +3,8 @@ function vtb8_1
 % Makes input file for VTB8_2
 % I suggest you print the file vtb8read.txt
 
-%	Joseph C. Slater, 6-17-90
-%	Copyright (c) 1990-94 by Joseph C. Slater
+%   Joseph C. Slater, 6-17-90
+%   Copyright (c) 1990-94 by Joseph C. Slater
 
 %       11 Nov 94 -- fixed graphics to work with Matlab 4.0
 
@@ -38,9 +38,9 @@ for i=2:1000
   if .618*xsp > ysp
       xh=xho+.1*xsp;
       xl=xlo-.1*xsp;
-	  yh=(yho+ylo)/2+(xh-xl)*.618/2;
-	  yl=(yho+ylo)/2-(xh-xl)*.618/2;
-	else
+      yh=(yho+ylo)/2+(xh-xl)*.618/2;
+      yl=(yho+ylo)/2-(xh-xl)*.618/2;
+    else
       yh=yho+.1*ysp;
       yl=ylo-.1*ysp;
       xh=(xho+xlo)/2+.5*(yh-yl)/.618;
@@ -53,11 +53,11 @@ for i=2:1000
   j=1:i;
   if i < 10
       istr=[num2str(i) '  '];
-	elseif i < 100
-	  istr=[num2str(i) ' '];
-	else
-	  istr=[num2str(i)];
-  end	
+    elseif i < 100
+      istr=[num2str(i) ' '];
+    else
+      istr=[num2str(i)];
+  end   
   nnum=[nnum;istr];
   text(node(j,1)'+dx,node(j,2)'+dy,nnum)
   axis([xl xh yl yh])
@@ -314,6 +314,3 @@ if answer=='y'
     vtb8_2(projectname);
   end
 end
-
-%Automatically check for updates
-vtbchk

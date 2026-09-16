@@ -1,7 +1,7 @@
 %
 % Timoshenko 2-D beam finite element code. Ver. 1.1
-%	J. C. Slater
-%	Written 7-18-91.	Copyright (c) 1991 by Joseph C. Slater.
+%   J. C. Slater
+%   Written 7-18-91.    Copyright (c) 1991 by Joseph C. Slater.
 % This software is shareware courtesy of the authors. This software 
 % may not be sold without the written consent of the author.  The 
 % package is provided as is with no warantee intended or implied.  
@@ -19,6 +19,3 @@
 % information on upgrades and the future 3-D version. Expressed 
 % interest in the full 3-D version will speed up writing process.
 eig(1);
-
-%Automatically check for updates
-vtbchk

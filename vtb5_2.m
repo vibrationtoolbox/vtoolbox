@@ -12,6 +12,3 @@ Ft=k*Y*r^2*TR;
 
 disp(['The transmitted force is ',num2str(Ft),' newtons.'])
 
-
-%Automatically check for updates
-vtbchk

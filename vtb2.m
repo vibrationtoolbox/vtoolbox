@@ -15,6 +15,3 @@
 %        system with viscous, coulomb, or air damping.
 %        NOTE: VTB2_6 will be replaced by VTB1_5 after Fall 2000
 
-
-%Automatically check for updates
-vtbchk

@@ -240,6 +240,3 @@ if nargout==0
         delete(handle), delete(handle2), delete(handle3)
     end
 end
-
-%Automatically check for updates
-vtbchk

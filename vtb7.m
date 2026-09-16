@@ -18,6 +18,3 @@
 % VTB7_5   Frequency Response Function from second order system matrices.
 % VTB7_6   Matrix iteration + deflation solution of large eigenvalue
 %          problems.
-
-%Automatically check for updates
-vtbchk

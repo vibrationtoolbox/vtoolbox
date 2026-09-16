@@ -1,0 +1,33 @@
+name: MATLAB Lint
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  checkcode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+
+      - name: Run MATLAB Code Analyzer (checkcode)
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            files = dir(fullfile(pwd, '*.m'));
+            for k = 1:numel(files)
+                f = fullfile(files(k).folder, files(k).name);
+                msgs = checkcode(f, '-id');
+                if ~isempty(msgs)
+                    fprintf('Issues in %s:\n', f);
+                    for j = 1:numel(msgs)
+                        fprintf('  Line %d: %s (%s)\n', msgs(j).line, msgs(j).message, msgs(j).id);
+                    end
+                end
+            end

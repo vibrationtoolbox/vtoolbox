@@ -9,8 +9,10 @@ if aa==1
     if isunix&&~strcmp(computer,'MACI')
         astartmod=questdlg(['Path not saved. You will need to add the line ''addpath(''' pwd ''')'' to your startup.m file. Do you want me to attempt to do this?']) ;
         if strcmp(astartmod,'Yes')
-            ucommand=['!echo addpath\(\''' pwd '\''' ',' '\''' '-' 'end' '\''' '\) >> ~/startup.m'];
-            eval(ucommand);
+            startupfile = fullfile(getenv('HOME'),'startup.m');
+            fid = fopen(startupfile,'a');
+            fprintf(fid,'addpath(''%s'',''-end'')\n',pwd);
+            fclose(fid);
             msgbox('The last line of the file startup.m in your home directory should now be set to add vtoolbox to your path each time you run Matlab. In order for the Engineering Vibration Toolbox to work, you must always run Matlab from your home directory. ')
         end
     else
@@ -19,3 +21,8 @@ if aa==1
     end
 
 end
+
+%Check once for updates now that the toolbox is set up. This is the only
+%place an update check runs automatically; it only prints a notice and
+%never downloads or executes anything (run 'vtbud' yourself to update).
+vtbchk

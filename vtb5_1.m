@@ -28,6 +28,3 @@ grid on
 ylabel('Transmissibility Ratio')
 xlabel('Dimensionless Frequency') 
 
-
-%Automatically check for updates
-vtbchk

@@ -32,6 +32,3 @@ title(['Response spectrum of a SDOF system with f = ',num2str(f),' Hz']);
 ylabel('Dimensionless maximum response - (xk/Fo)max')
 xlabel('Rise time (t_1)')
 
-
-%Automatically check for updates
-vtbchk

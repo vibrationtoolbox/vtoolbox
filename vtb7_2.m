@@ -50,6 +50,3 @@ grid on
 pause
 
 
-
-%Automatically check for updates
-vtbchk

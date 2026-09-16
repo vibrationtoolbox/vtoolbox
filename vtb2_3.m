@@ -12,21 +12,21 @@ function vtb2_3(z,rmin,rmax,opt)
 % vtb2_3([0.001:.04:.2],0,2,3)
 
 if ishold==0
-	clf
+    clf
 end
 if nargin==1
-	opt=z;
-	z=.0:.05:.5;
-	rmin=0;
-	rmax=4;
-	disp('Demo mode. Type ''help vtb2_3'' to learn how to enter values.')
+    opt=z;
+    z=.0:.05:.5;
+    rmin=0;
+    rmax=4;
+    disp('Demo mode. Type ''help vtb2_3'' to learn how to enter values.')
 end
 if nargin==0 
-	z=.0:.2:2;
-	rmin=0;
-	rmax=4;
-	disp('Demo mode. Type ''help vtb2_3'' to learn how to enter values.')
-	opt=3;
+    z=.0:.2:2;
+    rmin=0;
+    rmax=4;
+    disp('Demo mode. Type ''help vtb2_3'' to learn how to enter values.')
+    opt=3;
 end
 
 if nargin==3, opt=3;end
@@ -34,12 +34,12 @@ if nargin==3, opt=3;end
 r=rmin:(rmax-rmin)/1000:rmax;
 z=z+eps;
 for i=1:length(z)
-	A0(i,:)=1./(1-r.^2+2*j*r*z(i));
-	a{i}=['\zeta = ' num2str(z(i))];
+    A0(i,:)=1./(1-r.^2+2*j*r*z(i));
+    a{i}=['\zeta = ' num2str(z(i))];
 end
 
 if opt==3 
-	subplot(2,1,1)
+    subplot(2,1,1)
 end
 if opt ~=2
 %semilogy(r,log(abs(A0)))
@@ -47,7 +47,7 @@ plot(r,20*log10(abs(A0)))
 %plot(r,log10(abs(A0)))
 %labels=str2num(get(gca,'yticklabel'));
 %for i=1:length(labels)
-%	labels(i,:)=10^labels(i);
+%   labels(i,:)=10^labels(i);
 %end
 %labels
 %labels=num2str(labels)
@@ -83,10 +83,10 @@ end
 % break
 % % Old code
 % for i=1:length(z)
-% 	z=zz(i);
-% 	A0=(1)./sqrt((1-r.^2).^2+(2*z*r).^2);%(2.30)
-% 	c
-% 	hold on
+%   z=zz(i);
+%   A0=(1)./sqrt((1-r.^2).^2+(2*z*r).^2);%(2.30)
+%   c
+%   hold on
 % end
 % xlabel('Frequency Ratio')
 % ylabel('Normalized Amplitude')
@@ -96,10 +96,10 @@ end
 % hold off
 % pause
 % for i=1:length(zz)
-% 	z=zz(i);
-% 	phi=atan2(2*z*r,1-r.^2);%(2.30)
-% 	plot(r,phi/pi*180)
-% 	hold on	
+%   z=zz(i);
+%   phi=atan2(2*z*r,1-r.^2);%(2.30)
+%   plot(r,phi/pi*180)
+%   hold on 
 % end
 % 
 % xlabel('Frequency Ratio')
@@ -111,6 +111,3 @@ end
 % hold off
 
 %legend(char(a),4)
-
-%Automatically check for updates
-vtbchk

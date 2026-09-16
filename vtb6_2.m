@@ -33,11 +33,11 @@ end
 if cstype==1    %Circular shaft
       R=cspar(1);
       g=(pi*R^4)/2;
-elseif cstype==2				%hollow circular shaft
+elseif cstype==2                %hollow circular shaft
       R1=cspar(1);
       R2=cspar(2);
       g=(pi/2)*(R2^4-R1^4);
-elseif cstype==3				%square shaft
+elseif cstype==3                %square shaft
       a=cspar(1);
       g=.1406*a^4;
 elseif cstype==4    %hollow square shaft
@@ -98,6 +98,3 @@ if plotpar==1
       pause
    end
 end
-
-%Automatically check for updates
-vtbchk

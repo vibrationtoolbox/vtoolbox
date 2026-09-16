@@ -67,6 +67,4 @@ plot(x,y,'.m')
 grid on
 zoom on
 hold off
-%Automatically check for updates
-vtbchk
 

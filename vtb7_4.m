@@ -73,13 +73,13 @@ function [z,nf,u]=vtb7_4(f,TF,Fmin,Fmax)
 %disp('This code will expire 15-Jun-2001')
 
 %if datenum('10-Jun-2001')<datenum(date)
-%	warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p will expire 15-Jun-2003')	
+%   warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p will expire 15-Jun-2003')   
 %end
 
 
 % if datenum('15-Jun-2004')<datenum(date)
-% 	delete mdofcd.p
-% 	warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p has expired')	
+%   delete mdofcd.p
+%   warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p has expired')   
 % end
 
 inlow=1;
@@ -113,9 +113,9 @@ w=f*2*pi*sqrt(-1);
 w2=w*0;
 R3=R*0;
 for i=1:ll
-	R3(i)=conj(R(ll+1-i));
-	w2(i)=conj(w(ll+1-i));
-	TF2(i,:)=conj(TF(ll+1-i,:));
+    R3(i)=conj(R(ll+1-i));
+    w2(i)=conj(w(ll+1-i));
+    TF2(i,:)=conj(TF(ll+1-i,:));
 end
 w=[w2;w];
 R=[R3;R];
@@ -177,63 +177,63 @@ R=XoF;
 if nargout<3
 for mm=1:size(a,2)
 
-	if mm>1
+    if mm>1
 
-		pause
-	end
+        pause
+    end
 clf
-	figure(gcf)
-	XoF=R((ll+1:2*ll),:)*a(:,mm);
-	%plot([abs(XoF) abs(TF)])
-	%2*ll
-	%plot(abs(w(ll:2*ll)))
-	%pause
-	%break
+    figure(gcf)
+    XoF=R((ll+1:2*ll),:)*a(:,mm);
+    %plot([abs(XoF) abs(TF)])
+    %2*ll
+    %plot(abs(w(ll:2*ll)))
+    %pause
+    %break
 
-	Fmin=min(f);
-	Fmax=max(f);
-	phase=unwrap(angle(TF(:,mm)))*180/pi;
-	phase2=unwrap(angle(XoF))*180/pi;size(phase);
-	%size(XoF)
-	subplot(2,1,1)
-	plot(f,20*log10(abs(XoF)),f,20*log10(abs(TF(:,mm))))
+    Fmin=min(f);
+    Fmax=max(f);
+    phase=unwrap(angle(TF(:,mm)))*180/pi;
+    phase2=unwrap(angle(XoF))*180/pi;size(phase);
+    %size(XoF)
+    subplot(2,1,1)
+    plot(f,20*log10(abs(XoF)),f,20*log10(abs(TF(:,mm))))
 
-	as=axis;
-	legend('Identified FRF','Experimental FRF')
-	min(f);
-	axis([Fmin Fmax as(3) as(4)])
-	title(['Frequency Response Function ' num2str(mm) ' Fit'])
-	xlabel('Frequency (Hz)')
-	ylabel('Mag (dB)')
+    as=axis;
+    legend('Identified FRF','Experimental FRF')
+    min(f);
+    axis([Fmin Fmax as(3) as(4)])
+    title(['Frequency Response Function ' num2str(mm) ' Fit'])
+    xlabel('Frequency (Hz)')
+    ylabel('Mag (dB)')
 
-	grid on
-	zoom on
+    grid on
+    zoom on
 
-	drawnow
+    drawnow
 
-	%  Fmin,Fmax,min(mag),max(mag)
-	%  axis([Fmin Fmax minmag maxmag])
-	%pause
-	
-	while phase2(in)>50
-	phase2=phase2-360;
-	end
-	phased=phase2(in)-phase(in);
-	phase=phase+round(phased/360)*360;
-	phmin_max=[floor(min(min([phase;phase2]))/45)*45 ceil(max(max([phase;phase2]))/45)*45];
-	subplot(2,1,2)
-	plot(f,phase2,f,phase)
-	xlabel('Frequency (Hz)')
-	ylabel('Phase (deg)')
-	legend('Identified FRF','Experimental FRF')
-	
-	axis([Fmin Fmax  phmin_max(1) phmin_max(2)])
-	gridmin_max=round(phmin_max/90)*90;
-	set(gca,'YTick',gridmin_max(1):22.5:gridmin_max(2))
-	grid on
-	zoom on
-	drawnow
-	figure(gcf)
-	disp(['DOF ' num2str(mm) ' of ' num2str(size(a,2)) '. Press return to plot next curve-fit FRF or end.'])
+    %  Fmin,Fmax,min(mag),max(mag)
+    %  axis([Fmin Fmax minmag maxmag])
+    %pause
+    
+    while phase2(in)>50
+    phase2=phase2-360;
+    end
+    phased=phase2(in)-phase(in);
+    phase=phase+round(phased/360)*360;
+    phmin_max=[floor(min(min([phase;phase2]))/45)*45 ceil(max(max([phase;phase2]))/45)*45];
+    subplot(2,1,2)
+    plot(f,phase2,f,phase)
+    xlabel('Frequency (Hz)')
+    ylabel('Phase (deg)')
+    legend('Identified FRF','Experimental FRF')
+    
+    axis([Fmin Fmax  phmin_max(1) phmin_max(2)])
+    gridmin_max=round(phmin_max/90)*90;
+    set(gca,'YTick',gridmin_max(1):22.5:gridmin_max(2))
+    grid on
+    zoom on
+    drawnow
+    figure(gcf)
+    disp(['DOF ' num2str(mm) ' of ' num2str(size(a,2)) '. Press return to plot next curve-fit FRF or end.'])
 end
 end

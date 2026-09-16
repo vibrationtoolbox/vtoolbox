@@ -14,6 +14,3 @@ function vtb1()
 %        be in state space or LSOM form.
 % VTB1_5 plots the free decay of a single degree of freedom
 %        system with viscous, coulomb, or air damping.
-
-%Automatically check for updates
-vtbchk

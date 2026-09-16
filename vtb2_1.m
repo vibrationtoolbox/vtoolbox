@@ -25,6 +25,3 @@ grid on
 xlabel('Time')
 ylabel('Displacement')
 title('Displacement versus Time')
-
-%Automatically check for updates
-vtbchk

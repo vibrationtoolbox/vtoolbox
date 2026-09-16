@@ -18,10 +18,10 @@ if nargin==0
   lfilename=sfilename(2);
   if filename(lfilename-3)=='.'
     filename=[filename(1:lfilename-4)  '.con'];
-	projectname=filename(1:lfilename-4);
+    projectname=filename(1:lfilename-4);
    else
     filename=[filename '.con'];
-	projectname=filename(1:lfilename-4);
+    projectname=filename(1:lfilename-4);
   end
   eval(['load ',projectname,'.con -mat']);
   eval(['load ',projectname,'.eqn -mat']);
@@ -75,12 +75,12 @@ for ii=1:1000
       disp('Only one deformation found.')
       disp('Selection a is disabled.')
     end
-	
+    
     disp('')
     disp('     a) Select Mode Number')
     disp('     b) Scale Deformation')
     disp('     c) Show Deformation')
-	disp('     d) Print Deformation')
+    disp('     d) Print Deformation')
     disp('     e) Exit')
     answer=input('Enter Choice: ','s');
     if answer=='e' | answer=='c'
@@ -99,9 +99,9 @@ for ii=1:1000
       clc
       scale=input('Enter scale factor: '); 
     end
-	if answer=='d'
-	  print
-	end
+    if answer=='d'
+      print
+    end
   end
 
   if answer=='e'
@@ -126,9 +126,9 @@ for ii=1:1000
   if .618*xsp > ysp
       xh=xho+.1*xsp;
       xl=xlo-.1*xsp;
-	  yh=(yho+ylo)/2+(xh-xl)*.618/2;
-	  yl=(yho+ylo)/2-(xh-xl)*.618/2;
-	else
+      yh=(yho+ylo)/2+(xh-xl)*.618/2;
+      yl=(yho+ylo)/2-(xh-xl)*.618/2;
+    else
       yh=yho+.1*ysp;
       yl=ylo-.1*ysp;
       xh=(xho+xlo)/2+.5*(yh-yl)/.618;
@@ -162,6 +162,3 @@ for ii=1:1000
   axis('image')
 end
 grid on
-
-%Automatically check for updates
-vtbchk

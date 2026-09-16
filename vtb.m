@@ -17,18 +17,15 @@ function b=vtb(a)
 %  for the latest information.
 % 
 if nargin==0
-	disp(' ')
-	disp('You should type:')
-	disp('help vtb')
-	disp('for help on a file named vtb.m')
-	
-	pause(2)
-	help vtb
-	return
+    disp(' ')
+    disp('You should type:')
+    disp('help vtb')
+    disp('for help on a file named vtb.m')
+    
+    pause(2)
+    help vtb
+    return
 else
-	web http://www.engineering.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.html;
-	return
+    web http://www.engineering.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.html;
+    return
 end
-
-%Automatically check for updates
-vtbchk

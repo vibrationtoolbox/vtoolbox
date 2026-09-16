@@ -74,8 +74,8 @@ for k=1:n
               disp(text1)
               nzero=nzero+1;
               zlog(nzero,1:2)=[x(i,j) xd(i,j)];
-			  plot(x(i,j),xd(i,j),'or')
-             else		  
+              plot(x(i,j),xd(i,j),'or')
+             else         
               %[ones(l,1)*b(1) ones(l,1)*b(2)];
               old=sum((zlog'==[ones(nzero,1)*x(i,j) & ones(nzero,1)*xd(i,j)]'));
               if ~old
@@ -87,8 +87,8 @@ for k=1:n
                  disp(text1)
                  nzero=nzero+1;
                  zlog(nzero,1:2)=[x(i,j) xd(i,j)];
-				 plot(x(i,j),xd(i,j),'or')
-              end			  
+                 plot(x(i,j),xd(i,j),'or')
+              end             
            end
         end
         plot([x(i,j) x2(i,j)],[xd(i,j) xd2(i,j)])
@@ -101,6 +101,3 @@ end
 plot(zlog(:,1),zlog(:,2),'or')
 hold off
 grid on
-
-%Automatically check for updates
-vtbchk

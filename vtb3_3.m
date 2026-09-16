@@ -124,5 +124,3 @@ else
     ap=a(1:n+1);bp=b(1:n);
   end
 end
-%Automatically check for updates
-vtbchk

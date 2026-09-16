@@ -42,6 +42,3 @@ text(.2,.85,['Primary mass frequency = ',num2str(wp),' rad/s'],'units','normal')
 text(.2,.8,['Frequency ratio (beta) = ',num2str(b)],'units','normal')
 text(.2,.75,['Mass ratio (mu) = ',num2str(mu)],'units','normal')
 text(.2,.70,['Absorber damping ratio = ',num2str(z)],'units','normal')
-
-%Automatically check for updates
-vtbchk

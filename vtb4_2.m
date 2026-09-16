@@ -53,7 +53,7 @@ if plotpar~= 0
         xlabel('time (sec)')
         title('Press any key to continue')
         grid on
-		pause
+        pause
       end
    end 
    if plotpar~=1
@@ -63,11 +63,8 @@ if plotpar~= 0
         xlabel('time (sec)')
         title('Press any key to continue')
         grid on
-		pause
+        pause
       end
    end
 end
 
-
-%Automatically check for updates
-vtbchk

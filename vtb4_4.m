@@ -30,8 +30,8 @@ function [x,xd]=vtb4_4(M,D,K,F,T, V0, X0)
 %  %response of DOF 1, compares to closed form solution
 % 
   
-% 	J. C. Slater 5/29/09
-%	Copyright (c) 2009 by Joseph C. Slater
+%   J. C. Slater 5/29/09
+%   Copyright (c) 2009 by Joseph C. Slater
 
 A=[zeros(size(M)), eye(size(M));-M\K,-M\D];
 
@@ -54,6 +54,3 @@ xd=y(:,[1:size(M,1)]+size(M,1))';
 
   
 
-
-%Automatically check for updates
-vtbchk

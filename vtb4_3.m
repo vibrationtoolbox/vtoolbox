@@ -12,7 +12,7 @@ if nargin==2
   [d,i]=sort(sqrt(w/2/pi));
   w=w(i);
   v=real(v(:,i));
-  vnorms=sqrt(v'*m*v);	
+  vnorms=sqrt(v'*m*v);  
   v=real(v/vnorms);
 end
 if nargin==3
@@ -23,7 +23,7 @@ if nargin==3
     [f,i]=sort(sqrt(w/2/pi));
     w=w(i);
     v=real(v(:,i));
-    vnorms=sqrt(v'*m*v);	
+    vnorms=sqrt(v'*m*v);    
     v=real(v/vnorms);
     zeta=diag((v'*m*v)\(v'*d*v)/2/diag(w));
    else
@@ -36,6 +36,3 @@ if nargin==3
 end
 
 %if nargout==3;zeta=diag(zeta);end
-
-%Automatically check for updates
-vtbchk

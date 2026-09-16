@@ -30,6 +30,3 @@ grid on
 xlabel('Frequency Ratio')
 ylabel('Phase')
 title('Phase versus Frequency Ratio')
-
-%Automatically check for updates
-vtbchk

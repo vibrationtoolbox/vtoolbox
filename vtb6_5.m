@@ -24,7 +24,7 @@ if exist('np')==0
 end
 
 if fmin==0
-	fmin=fmax/np;
+    fmin=fmax/np;
 end
 
 %wn=0;
@@ -37,25 +37,25 @@ rho=beamparams(3);
 A=beamparams(4);
 L=beamparams(5);
 if min([xin xout])<0|max([xin xout])>L
-	disp('One or both locations are not on the beam')
-	return
+    disp('One or both locations are not on the beam')
+    return
 end
 
 wn=0;
 
 
 if nargin==6
-	zeta=0.01;
+    zeta=0.01;
 end
 while wn<1.3*(fmax*2*pi)%Including contributions of mode with frequencies 5x the max
     i=i+1;
-	legtext{i+1}=['Contribution of mode ' num2str(i)];
+    legtext{i+1}=['Contribution of mode ' num2str(i)];
     [wn,xx,U]=vtb6_3(i,bctype,beamparams,5000);
-	%wn/2/pi
-	Uin=spline(xx,U,xin);
-	Uout=spline(xx,U,xout);
-	%plot(U),figure(1),pause
-	%plot(xx,U,xin,Uin,'*',xout,Uout,'o'),pause
+    %wn/2/pi
+    Uin=spline(xx,U,xin);
+    Uout=spline(xx,U,xout);
+    %plot(U),figure(1),pause
+    %plot(xx,U,xin,Uin,'*',xout,Uout,'o'),pause
     %modeint=sum(U)*L;
     a(:,i)=rho *A*Uin*Uout./(wn^2-w.^2+2*zeta*wn*w*sqrt(-1));
     f(i)=wn/2/pi;
@@ -78,9 +78,6 @@ xlabel('Frequency (Hz)')
 ylabel('Phase (deg)')
 %whos;
 if nargout~=0
-	fout=w/2/pi;
-	H=sum(a,2);
+    fout=w/2/pi;
+    H=sum(a,2);
 end
-
-%Automatically check for updates
-vtbchk

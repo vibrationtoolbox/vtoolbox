@@ -25,6 +25,3 @@ ylabel('mass ratio - \mu')
 xlabel('normalized frequency \omega/\omega_a')
 grid on
 axis;
-
-%Automatically check for updates
-vtbchk

@@ -22,8 +22,8 @@ function [x,xd]=vtb1_4(n,dt,x0,xd0,a,b,c,u)
 %  Time step should be chosen to be much smaller than the smallest
 %  period of your system. 
 
-% 	J. C. Slater 1-10-93
-%	Copyright (c) 1993 by Joseph C. Slater
+%   J. C. Slater 1-10-93
+%   Copyright (c) 1993 by Joseph C. Slater
 
 if nargin==8
    la=length(a);
@@ -54,6 +54,3 @@ if lx/2==floor(lx/2)
  else
   xd=x;
 end
-
-%Automatically check for updates
-vtbchk

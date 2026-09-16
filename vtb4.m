@@ -9,6 +9,3 @@
 % VTB4_4 Numerical integration of MDOF systems using lsim (simple
 %        interface to lsim)
 % VTB7_5 Frequency Response Function from system matrices. 
-
-%Automatically check for updates
-vtbchk

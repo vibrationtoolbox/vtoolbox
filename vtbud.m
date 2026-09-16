@@ -17,7 +17,7 @@ sourcehead = 'https://raw.githubusercontent.com/vibrationtoolbox/vtoolbox/master
 ziploc = 'https://github.com/vibrationtoolbox/vtoolbox/archive/master.zip';
 webpageloc= 'http://vibrationtoolbox.github.io';
 
-if ~strcmp(java.lang.System.getProperty( 'java.awt.headless' ),'true')
+if usejava('desktop')
 
     % Location of Engineering Vibration Toolbox Installation
 vtbdir=which('vtb1_1.m');
@@ -53,9 +53,9 @@ else
     vtbupdir=vtbdir(1:length(vtbdir)-9);
 %    web vtbud.txt
     
-    insdatestamp=urlread(['file:///' fullfile(vtbdir,'vtbdatestamp.txt')]);
-    curdatestamp=urlread([sourcehead 'vtbdatestamp.txt']);
-    if str2num(insdatestamp)<str2num(curdatestamp)&~strcmp(java.lang.System.getProperty( 'java.awt.headless' ),'true')
+    insdatestamp=fileread(fullfile(vtbdir,'vtbdatestamp.txt'));
+    curdatestamp=webread([sourcehead 'vtbdatestamp.txt']);
+    if str2num(insdatestamp)<str2num(curdatestamp)&usejava('desktop')
     web([head 'vtbud.txt']);
     answer=questdlg('You do not have the most recent version of the Engineering Vibration Toolbox. Please, review the recent updates to determine if you want to update. Do you want to update the Engineering Vibration Toolbox?','Update now?','Update','No','Cancel','tex');
         if strcmp(answer,'Update')
@@ -105,19 +105,24 @@ if strcmp(answer,'Yes')&&strcmp(license,'Yes')
         'Install from?','Hard drive','Internet','Internet');
         if strcmp(answer,'Internet')
             delete('vtoolbox.zip')
-            urlwrite(ziploc,'vtoolbox.zip')
+            websave('vtoolbox.zip',ziploc)
             unzip('vtoolbox.zip')
             delete('vtoolbox.zip')
         else
             unzip('vtoolbox.zip',pwd)
         end
     else
-        [weby,st]=urlread(webpageloc);
+        try
+            weby=webread(webpageloc);
+            st=1;
+        catch
+            st=0;
+        end
         if st==0
             msgdlg('Without a downloaded vtoolbox.zip file or an internet connection the installation cannot continue.','Error')
             return
         end
-        urlwrite(ziploc,'vtoolbox.zip')
+        websave('vtoolbox.zip',ziploc)
         unzip('vtoolbox.zip')
         delete('vtoolbox.zip')
     end
@@ -131,8 +136,10 @@ if aa==1
     if isunix&&~strcmp(computer,'MACI')&&~strcmp(update,'Yes')
         astartmod=questdlg(['Path not saved. You will need to add the line ''addpath(''' pwd ''')'' to your startup.m file. Do you want me to attempt to do this?']) ;
         if strcmp(astartmod,'Yes')
-            ucommand=['!echo addpath\(\''' pwd '\''' ',' '\''' '-' 'end' '\''' '\) >> ~/startup.m'];
-            eval(ucommand);
+            startupfile = fullfile(getenv('HOME'),'startup.m');
+            fid = fopen(startupfile,'a');
+            fprintf(fid,'addpath(''%s'',''-end'')\n',pwd);
+            fclose(fid);
             msgbox('The last line of the file startup.m in your home directory should now be set to add vtoolbox to your path each time you run Matlab. In order for the Engineering Vibration Toolbox to work, you must always run Matlab from your home directory. ');
         else
             msgbox('You must add the command ''''addpath ''vtoolbox'' -end'''' to your startup.m file in order to use the Engineering Vibration Toolbox.');

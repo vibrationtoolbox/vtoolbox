@@ -46,15 +46,15 @@
 % 2) Type clear.  Enter the data interactively.
 %     Save a file with the file extension .con.
 %     i.e. type: save beam1.con or use the menu command
-% 	"Save Workspace" if it exists on your platform.
-% 	Make sure to save the file in the directory you want
-% 	it and use the extension ".con".
+%   "Save Workspace" if it exists on your platform.
+%   Make sure to save the file in the directory you want
+%   it and use the extension ".con".
 %     Type: vtb8_2
-% 	Load vtb8_2 when prompted.
+%   Load vtb8_2 when prompted.
 % 3) Type clear.  Enter the data interactively.
 %     Type: [x,f]=vtb8_2(node,ncon,zero,force)
-% 	This method does not allow you to save the 
-% 	equations and is not recommended.
+%   This method does not allow you to save the 
+%   equations and is not recommended.
 % 4) Create a script 'm' file including the definitions.
 %     Add the line:
 %     save filename.con

@@ -7,6 +7,3 @@
 %          Note the differences between experimental
 %          data and what you would expect from theory.
  
-
-%Automatically check for updates
-vtbchk

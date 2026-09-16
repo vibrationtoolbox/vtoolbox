@@ -1,17 +1,16 @@
 function vtbchk
-%VTBCHK Checks for updates on a semi-regular basis.
-% Mostly precludes need to run vtbud manually
+%VTBCHK Checks for updates on a semi-regular basis and prints a notice.
+% Intended to be called explicitly (e.g. once from vtbsetup) rather than
+% automatically from every toolbox function. It never downloads or runs
+% anything itself; it only prints a notice telling the user to run VTBUD.
 
 % variable chkskip tells how often to run check.
 
 %Joseph C. Slater, April 2008
+%Updated to be notify-only (no auto-launch of vtbud) and to use webread
+%instead of the deprecated urlread.
 
-head = 'https://github.com/vibrationtoolbox/vtoolbox/blob/master/';
 sourcehead = 'https://raw.githubusercontent.com/vibrationtoolbox/vtoolbox/master/';
-ziploc = 'https://github.com/vibrationtoolbox/vtoolbox/archive/master.zip';
-webpageloc= 'http://vibrationtoolbox.github.io';
-
-
 
 chkskip=7;% number of days to go without checking again.
 curpath=pwd;
@@ -19,38 +18,36 @@ vtbdir=which('vtb1_1.m');vtbdir=vtbdir(1:(length(vtbdir)-8));
 cd(vtbdir)
 
 %chckdatestamp is the last time the code checked to see if there
-%were updates. 
+%were updates.
 
-%vtbdatestamp is the time stamp of the toolboxes last edit. 
+%vtbdatestamp is the time stamp of the toolboxes last edit.
 
-if exist('chkdatestamp.txt')==0
-	chkdatestamp=0;
+if exist('chkdatestamp.txt','file')==0
+    chkdatestamp=0;
 else
-	[chkdatestamp,status]=urlread(['file:///' fullfile(vtbdir,'chkdatestamp.txt')]);
+    chkdatestamp=fileread('chkdatestamp.txt');
 end
-
 
 if (str2double(chkdatestamp)<(now-chkskip))
-    %installed date
-    [insdatestamp,status]=urlread(['file:///' fullfile(vtbdir,'vtbdatestamp.txt')]);
-    %online stamp
-    [curdatestamp,status]=urlread([sourcehead 'vtbdatestamp.txt']);
-    if (str2double(insdatestamp)<str2double(curdatestamp))
-	vtbud
-	disp('Run vtbud at any time you are online to check for updates to the Engineering Vibration Toolbox.')
-    end
-    if status==0
-    disp('Engineering Vibration Toolbox update checking not working.')
-    disp(['Either you are not on the internet, or a fault has ' ...
-          'occured.'])
-    disp(['If you are online, please notify me by filing an error ' ...
-          'report at http://vibrationtoolbox.github.io'])
-    disp('Run ''vtbud'' while on online to check for updates.')
-    disp(['Automatic check again in ' num2str(chkskip) ' days.'])
+    try
+        %installed date (read locally, no network needed)
+        insdatestamp=fileread('vtbdatestamp.txt');
+        %online stamp
+        curdatestamp=webread([sourcehead 'vtbdatestamp.txt']);
+        if (str2double(insdatestamp)<str2double(curdatestamp))
+            disp('A newer version of the Engineering Vibration Toolbox is available.')
+            disp('Run ''vtbud'' to review and install updates.')
+        end
+    catch
+        disp('Engineering Vibration Toolbox update checking not working.')
+        disp(['Either you are not on the internet, or a fault has ' ...
+              'occured.'])
+        disp(['If you are online, please notify me by filing an error ' ...
+              'report at http://vibrationtoolbox.github.io'])
+        disp('Run ''vtbud'' while online to check for updates.')
+        disp(['Automatic check again in ' num2str(chkskip) ' days.'])
     end
 end
-
-	
 
 fid = fopen('chkdatestamp.txt','wt');
 fprintf(fid,'%s',num2str(now));

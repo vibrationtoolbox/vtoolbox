@@ -57,6 +57,3 @@ if plotpar==1
       pause
    end
 end
-
-%Automatically check for updates
-vtbchk

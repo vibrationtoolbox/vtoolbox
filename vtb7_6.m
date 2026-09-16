@@ -8,7 +8,7 @@ function [lambda,phi]=vtb7_6(M,K,n)
 % Shift eigenvalues to allow solution for rigid body modes. 
 
 if nargin==2
-	n=1;
+    n=1;
 end
 shift=1;
 K=K+shift*M;
@@ -22,17 +22,17 @@ i=0;
 
 for i=1:n
 
-	while delta>100*eps
-		Xnew=A*X;
-		newev=norm(Xnew);
-		delta=abs(newev-oldev);
-		X=Xnew/norm(Xnew);
-		oldev=newev;
-	end
-	lambda(i)=1/newev-shift;
-	phi(:,i)=X;
-	A=matrdefl(A,newev,X);
-	delta=10;
+    while delta>100*eps
+        Xnew=A*X;
+        newev=norm(Xnew);
+        delta=abs(newev-oldev);
+        X=Xnew/norm(Xnew);
+        oldev=newev;
+    end
+    lambda(i)=1/newev-shift;
+    phi(:,i)=X;
+    A=matrdefl(A,newev,X);
+    delta=10;
 end
 
 %phi=X;

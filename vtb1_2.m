@@ -52,6 +52,3 @@ if lx/2==floor(lx/2)
  else
   xd=x;
 end
-
-%Automatically check for updates
-vtbchk

@@ -18,6 +18,3 @@ function vtb2_6(m,k,dtype,dcoef,dt,tott,x0,v0)
 disp('VTB2_6 has been grandfathered. Please use VTB1_5 in the future.')
 
 vtb1_5(m,k,dtype,dcoef,dt,tott,x0,v0)
-
-%Automatically check for updates
-vtbchk

@@ -66,10 +66,10 @@ if nargin==0
   lfilename=sfilename(2);
   if filename(lfilename-3)=='.'
     filename=[filename(1:lfilename-4)  '.con'];
-	projectname=filename(1:lfilename-4);
+    projectname=filename(1:lfilename-4);
    else
     filename=[filename '.con'];
-	projectname=filename(1:lfilename-4);
+    projectname=filename(1:lfilename-4);
   end
   eval(['load ',filename, ' -mat']);
 end
@@ -318,7 +318,7 @@ if answer1~='n'
       projectname=filename(1:lfilename-4);
      else
       filename=[filename '.out'];
-	  projectname=filename(1:lfilename-4);
+      projectname=filename(1:lfilename-4);
     end
   end
   eval(['save ',projectname,'.out',' x',' f']);
@@ -348,7 +348,7 @@ if answer2~='n'
       projectname=filename(1:lfilename-4);
      else
       filename=[filename '.eqn'];
-	  projectname=filename(1:lfilename-4);
+      projectname=filename(1:lfilename-4);
     end
   end
   p=p';
@@ -367,6 +367,3 @@ end
 
 xout=x;
 fout=f;
-
-%Automatically check for updates
-vtbchk

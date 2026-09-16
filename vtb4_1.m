@@ -45,6 +45,3 @@ if nargout==0
 end
 
 
-%Automatically check for updates
-vtbchk
-

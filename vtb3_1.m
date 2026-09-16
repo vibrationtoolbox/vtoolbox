@@ -38,6 +38,3 @@ text(3*tau+.02*max(t),min(x)/4,'5% Settling time')
 plot([4*tau 4*tau], [min(x)*0 max(x)]/4,'k')
 text(4*tau+.02*max(t),-min(x)/4,'2% Settling time')
 hold off
-
-%Automatically check for updates
-vtbchk

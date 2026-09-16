@@ -10,6 +10,3 @@
 %        shear deformation.
 % VTB6_5 Frequency response of an Euler beam between 2 points.
 
-
-%Automatically check for updates
-vtbchk

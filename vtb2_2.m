@@ -33,6 +33,3 @@ xlabel('Time')
 ylabel('Displacement')
 title('Displacement versus Time')
 end
-
-%Automatically check for updates
-vtbchk

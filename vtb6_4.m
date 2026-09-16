@@ -33,6 +33,3 @@ for i=1:n
     wn(i,3)=sqrt(wn(i,3)*(1/(1+(i^2*pi^2*r^2/L^2)*(E/(K*G)))));
 
 end
-
-%Automatically check for updates
-vtbchk

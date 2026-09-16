@@ -13,6 +13,3 @@
 %        of a system using Euler's method.  The system can
 %        be in state space or LSOM form.
 %        NOTE: VTB9_4 will be replaced by VTB1_4 after Fall 2000
-
-%Automatically check for updates
-vtbchk
