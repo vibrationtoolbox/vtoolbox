@@ -112,7 +112,7 @@ Windows is a registered trademark of Microsoft Corp.
 Unix is a registered trademark of AT&T.
 
 Joseph C. Slater is the copyright holder of the Engineering Vibration
-Toolbox. Neither the author, Prentice Hall, nor Wright State University
+Toolbox. Neither the author, Prentice Hall, nor my employer
 make any warranty with regard to merchantability or fitness for any given
 purpose with regard to the software. All rights are retained. No
 permission is given to anyone other than myself, the MathWorks and

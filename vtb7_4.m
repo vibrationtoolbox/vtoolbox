@@ -73,13 +73,13 @@ function [z,nf,u]=vtb7_4(f,TF,Fmin,Fmax)
 %disp('This code will expire 15-Jun-2001')
 
 %if datenum('10-Jun-2001')<datenum(date)
-%   warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p will expire 15-Jun-2003')   
+%   warndlg('contact joseph.c.slater@gmail.com for an update.','mdofcf.p will expire 15-Jun-2003')   
 %end
 
 
 % if datenum('15-Jun-2004')<datenum(date)
 %   delete mdofcd.p
-%   warndlg('contact joseph.slater@wright.edu for an update.','mdofcf.p has expired')   
+%   warndlg('contact joseph.c.slater@gmail.com for an update.','mdofcf.p has expired')   
 % end
 
 inlow=1;

@@ -204,4 +204,4 @@ Updates to Engineering Vibration Toolbox since 1/1/98
 Run vtbud to compare your version to the most current one.
 
 More information is available at the Engineering Vibration Toolbox
-website: http://www.cecs.wright.edu/~vtoolbox
+website: https://vibrationtoolbox.github.io
