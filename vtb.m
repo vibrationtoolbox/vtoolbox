@@ -13,7 +13,7 @@ function b=vtb(a)
 %
 %  Please connect to the Engineering Vibration Toolbox home
 %  page at
-%  http://www.cs.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.html
+%  https://vibrationtoolbox.github.io/matlab.html
 %  for the latest information.
 % 
 if nargin==0
@@ -26,6 +26,6 @@ if nargin==0
     help vtb
     return
 else
-    web http://www.engineering.wright.edu/people/faculty/jslater/vtoolbox/vtoolbox.html;
+    web https://vibrationtoolbox.github.io/matlab.html;
     return
 end
