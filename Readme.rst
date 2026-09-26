@@ -42,7 +42,19 @@ To submit a change, please see the document `CONTRIBUTING.rst`.
 Setting Up The Toolbox
 =======================
 
-Please go to `Engineering Vibration Toolbox web page`_ for installation instructions.
+**Recommended:** download the ``vtoolbox.mltbx`` file from the
+`latest GitHub Release <https://github.com/vibrationtoolbox/vtoolbox/releases/latest>`_
+and double-click it (or use ``matlab.addons.install``). MATLAB's Add-On
+Manager installs it and sets up the path automatically -- no admin rights
+needed, and it can be removed cleanly from **Home > Add-Ons > Manage
+Add-Ons**. See ``packaging/README.md`` for how this package is built.
+
+**Alternative (git clone):** clone this repository and run ``vtbsetup`` from
+the toolbox directory in MATLAB to add it to your path the old-fashioned
+way.
+
+Please also go to `Engineering Vibration Toolbox web page`_ for further
+installation instructions.
 
 
 Using The Engineering Vibration Toolbox
@@ -112,7 +124,7 @@ Windows is a registered trademark of Microsoft Corp.
 Unix is a registered trademark of AT&T.
 
 Joseph C. Slater is the copyright holder of the Engineering Vibration
-Toolbox. Neither the author, Prentice Hall, nor my employer
+Toolbox. Neither the author, Prentice Hall, nor Wright State University
 make any warranty with regard to merchantability or fitness for any given
 purpose with regard to the software. All rights are retained. No
 permission is given to anyone other than myself, the MathWorks and

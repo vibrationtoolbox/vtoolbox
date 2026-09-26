@@ -1,0 +1,29 @@
+name: Release Toolbox
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+
+      - name: Refresh vtbdatestamp.txt and build vtoolbox.mltbx
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            addpath('packaging');
+            update_datestamp;
+            build_toolbox;
+
+      - name: Upload vtoolbox.mltbx to the GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: vtoolbox.mltbx

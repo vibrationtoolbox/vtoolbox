@@ -13,14 +13,14 @@ home
 aa=version;ll=length(aa);
 figure
 grid on
-loc=input('Enter x and y location of node. (eg.: [x y]) ');
+loc=vtb8_1_parseloc(input('Enter x and y location of node. (eg.: [x y] or x,y) ','s'));
 node(1,:)=loc;
 plot(node(:,1),node(:,2),'*b')
 axis('square')
 nnum=['1  '];
 for i=2:1000
-  loc=input('Enter x and y location of node (ie. [x y]) or 0 to end. ');
-  if loc==0 & length(loc)==1 ,break,end
+  loc=vtb8_1_parseloc(input('Enter x and y location of node (ie. [x y] or x,y) or 0 (or blank) to end. ','s'));
+  if isempty(loc) | (loc==0 & length(loc)==1) ,break,end
   node(i,:)=loc;
   len=max([max(node(:,1))-min(node(:,1)) max(node(:,2))-min(node(:,2))]);
 %  xl=(max(node(:,1))+min(node(:,1)))/2-.7*length;
@@ -314,3 +314,18 @@ if answer=='y'
     vtb8_2(projectname);
   end
 end
+
+function loc=vtb8_1_parseloc(locstr)
+% VTB8_1_PARSELOC Parses a node-location entry typed as a string, accepting
+% either bracketed form (eg. [1 2] or [1,2]) or bare form (eg. 1,2 or 1 2).
+% Returns [] for blank entry.
+locstr=strtrim(locstr);
+if isempty(locstr)
+  loc=[];
+  return
+end
+if locstr(1)~='[' 
+  locstr=['[' locstr ']'];
+end
+loc=str2num(locstr); %#ok<ST2NM>
+

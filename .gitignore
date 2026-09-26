@@ -10,3 +10,15 @@ ehthumbs.db
 Thumbs.db
 Makefile
 /.project
+
+# Packaged toolbox build artifact (attached to GitHub Releases, not committed)
+*.mltbx
+deploymentLog.html
+/vtoolbox/release/
+
+# MATLAB Project's local build-tool cache (machine-specific, not source)
+resources/.buildtool/
+
+# Local, per-install record of when this install last checked for updates.
+# Rewritten by vtbchk.m every time it runs; not part of the toolbox source.
+chkdatestamp.txt
