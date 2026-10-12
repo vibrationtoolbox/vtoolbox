@@ -62,7 +62,7 @@ Steps taken (for reference, if this ever needs to be redone):
 5. Continue the wizard and set:
 
    * **Name:** ``Engineering Vibration Toolbox``
-   * **Version:** e.g. ``25.9.0`` (see *Versioning* below)
+   * **Version:** e.g. ``2026.10.11`` (see *Versioning* below)
    * **Author / summary / description:** from ``Readme.rst``
 
 6. Finish creating the project. This writes ``vtoolbox.prj`` and
@@ -89,7 +89,7 @@ Once the project exists, every future release is just:
 
 Then bump the version inside ``vtoolbox.prj`` (open the project once more
 via **Package Toolbox** and update the version field), commit, tag
-(e.g. ``git tag v25.9.0 && git push --tags``), and push. The
+(e.g. ``git tag v2026.10.11 && git push --tags``), and push. The
 ``.github/workflows/release.yml`` workflow re-runs both scripts and
 attaches the resulting ``vtoolbox.mltbx`` to the GitHub Release for that
 tag automatically, so users can download it without needing MATLAB
@@ -133,11 +133,20 @@ before every release.
 Versioning
 -----------
 
-Use `semantic versioning <https://semver.org>`_ (``MAJOR.MINOR.PATCH``) or
-a date-based scheme (``YY.M.PATCH``) for the ``vtoolbox.prj`` version field
--- either is fine, just be consistent. The version shown to users in the
-Add-On Manager comes only from ``vtoolbox.prj``; ``vtbdatestamp.txt`` is
-used solely for the legacy git-clone update check.
+Use a single ``YYYY.MM.DD`` date-based version for **both** the toolbox's
+internal version and the git tag/GitHub Release, e.g. a release made on
+2026-10-11 is tagged ``v2026.10.11`` and the toolbox's internal version is
+``2026.10.11``. Keeping both identical avoids confusion between what
+``ver``/Add-On Manager shows a user and what tag/release it came from.
+
+The internal version is **not** stored in ``vtoolbox.prj`` itself (that
+file is just a pointer). It is embedded as JSON inside an XML attribute in
+one of the hash-named files under ``resources/project/root/`` -- look for
+``"toolboxVersion":"YYYY.MM.DD"`` (e.g. via
+``grep -rl toolboxVersion resources/project/``) and edit it directly, or
+reopen the project via **Package Toolbox** in MATLAB and update the
+version field there. ``vtbdatestamp.txt`` is a separate, unrelated
+timestamp used solely for the legacy git-clone update check (see below).
 
 Files in this folder
 ----------------------
