@@ -1,6 +1,12 @@
-function [xout,fout]=VTB8_2(node,ncon,zero,force,conm)
+function [xout,fout]=vtb8_2(node,ncon,zero,force,conm,opts)
 %VTB8_2 [x,f]=VTB8_2(node,ncon,zero,force,conm)
 %       [x,f]=vtb8_2('filename');
+%    Optional last argument opts (a struct) answers the prompts so the
+%    code can be run from scripts: opts.analysis ('s' static or 'd'
+%    dynamic), opts.save ('y'/'n', saves the .out and .eqn files) and
+%    opts.plot ('y'/'n', view results with vtb8_3) and opts.name (project
+%    name used for the saved files). Any missing field is
+%    asked for interactively. For a file name: vtb8_2('filename',opts).
 %    Timoshenko 2-D beam finite element code.
 %
 %    node=[x1 y1;x2 y2;...]
@@ -25,13 +31,13 @@ function [xout,fout]=VTB8_2(node,ncon,zero,force,conm)
 %      1) Use the program vtb8_1.
 %      2) Type clear.  Enter the data interactively.
 %         Save a file with the file extension .con.
-%         i.e. type: save beam1.con
+%         i.e. type: save -mat beam1.con
 %         Type: beam
 %      3) Type clear.  Enter the data interactively.
 %         Type: [x,f]=vtb8_2(node,ncon,zero,force)
 %      4) Create a script 'm' file including the definitions.
 %         Add the line:
-%         save 'filename.con'
+%         save -mat 'filename.con'
 %         to the end of the file.
 %         Execute the script file.  
 %         Type: [x,f]=vtb8_2(node,ncon,zero,force,conm);
@@ -40,48 +46,35 @@ function [xout,fout]=VTB8_2(node,ncon,zero,force,conm)
 %    An example file named vtb8_e1.m is available.
 %
 %    I suggest you print the file vtb8read.txt.
-clc
-home
 %help readme10
 %disp(' ')
 %disp(' Hit return to continue')
 %pause
 
-clc,home
 
 if nargin==0
   [filename,pathname]=uigetfile('*.con','Open Connectivity File');
-  sizepath=size(pathname);
-  shortpathname=pathname(1:sizepath(2)-1);
-  lsp=size(findstr(shortpathname,':'));
-  if strcmp(computer,'MAC2') & lsp(1)==0
-    shortpathname=[shortpathname ':'];
+  if isequal(filename,0)
+    return
   end
-  cdpath=['cd ' '''' shortpathname '''' ];% Crazy quotes allow spaces
-  %                                       % in directory names.
-  eval(cdpath)
-  sfilename=size(filename);
-  path(path,pathname);
-  oflag=1;
-  lfilename=sfilename(2);
-  if filename(lfilename-3)=='.'
-    filename=[filename(1:lfilename-4)  '.con'];
-    projectname=filename(1:lfilename-4);
-   else
-    filename=[filename '.con'];
-    projectname=filename(1:lfilename-4);
-  end
-  eval(['load ',filename, ' -mat']);
+  cd(pathname)
+  [~,projectname]=fileparts(filename);
+  load([projectname '.con'],'-mat');
 end
 
-if nargin==1
+if nargin==2 && ischar(node) && isstruct(ncon)
+  opts=ncon;
+end
+if ~exist('opts','var')
+  opts=struct();
+end
+
+if ischar(node)
   disp(' Loading configuration data from file.')
   projectname=node;
-  eval(['load ',projectname,'.con -mat']);
+  load([projectname '.con'],'-mat');
 end
 
-clc
-home
 disp(' Constructing Global Mass and Stiffness Matrices')
 disp(' ')
 snode=size(node);
@@ -219,27 +212,25 @@ if sconm(1)~=0
 end
 
 % Zeroing stiffness matrix and mass matrix.
-clc
-home
 disp(' Applying Boundary Conditions.')
 disp(' ')
 k1=k;
 m1=m;
-if length(zero)~=0
-  np=(zero(:,1)-1)*3+zero(:,2);
-  np=sort(np);
-  p=1:3*snode;
-  p(np)=p(np)*0;
-  p=sort(p);
-  p=p(length(np)+1:length(p));
+p=1:3*snode(1);
+if ~isempty(zero)
+  np=unique((zero(:,1)-1)*3+zero(:,2));
+  p(np)=[];
   k1=k(p,p);
   m1=m(p,p);
 end
-clc,home
 selx=1:3:snode(1)*3;
 sely=2:3:snode(1)*3;
 selt=3:3:snode(1)*3;
-answer=input('Do you want to do a static or dynamic analysis? (s/d) ','s');
+if isfield(opts,'analysis')
+  answer=opts.analysis;
+else
+  answer=input('Do you want to do a static or dynamic analysis? (s/d) ','s');
+end
 if answer=='s' | answer=='S'
   pf=(force(:,1)-1)*3+force(:,2);
   f=zeros(snode(1)*3,1);
@@ -256,7 +247,6 @@ else
   [vk,dk]=eig(k1);
   flag=0;
   for ij=1:length(k1)
-    clc,disp('Working')
     if dk(ij,ij)<1e-14
       flag=1;
       keig=num2str(dk(ij,ij));
@@ -278,85 +268,58 @@ else
   f1=diag(fs1);
   x1=x1(:,sf1);
   snode;
-  x=zeros(snode(1)*3,snode(1)*3-szero(1));
-  if length(zero)~=0
-    for ic=1:length(x1)
-      x(p,ic)=x1(:,ic);
-    end
-  else
-    for ic=1:length(x1)
-      x(:,ic)=x1(:,ic);
-    end
+  x=zeros(snode(1)*3,numel(p));
+  for ic=1:length(x1)
+    x(p,ic)=x1(:,ic);
   end
   ff=diag(f1);
   f=ff;
   xx=x;
 end
 
-clc,home
-
-answer1=input('Save Results(y)? (y/n) ','s');
+if isfield(opts,'name')
+  projectname=opts.name;
+end
+if isfield(opts,'save')
+  answer1=opts.save;
+else
+  answer1=input('Save Results and Equations(y)? (y/n) ','s');
+end
 if answer1~='n'
-  if exist('pathname')
-    sizepath=size(pathname);
-    shortpathname=pathname(1:sizepath(2)-1);
-    lsp=size(findstr(shortpathname,':'));
-    if strcmp(computer,'MAC2') & lsp(1)==0
-      shortpathname=[shortpathname ':'];
-    end
-    cdpath=['cd ' '''' shortpathname '''' ];% Crazy quotes allow spaces
-    %                                       % in directory names.
-    eval(cdpath)
-  end
-  if exist('projectname')==0
+  if exist('projectname','var')==0
     [filename,pathname]=uiputfile('projectname.out','Save as:');
-    sfilename=size(filename);
-    path(path,pathname)
-    lfilename=sfilename(2);
-    if filename(lfilename-3)=='.'
-      filename=[filename(1:lfilename-4)  '.out'];
-      projectname=filename(1:lfilename-4);
-     else
-      filename=[filename '.out'];
-      projectname=filename(1:lfilename-4);
+    if ~isequal(filename,0)
+      cd(pathname)
+      [~,projectname]=fileparts(filename);
     end
   end
-  eval(['save ',projectname,'.out',' x',' f']);
+  if exist('projectname','var')
+    save('-mat',[projectname '.out'],'x','f');
+  end
   disp('Saving data')
 end
 
-answer2=input('Save Equations(y)? (y/n) ','s');
+answer2=answer1;
 if answer2~='n'
-  if exist('pathname')
-    sizepath=size(pathname);
-    shortpathname=pathname(1:sizepath(2)-1);
-    lsp=size(findstr(shortpathname,':'));
-    if strcmp(computer,'MAC2') & lsp(1)==0
-      shortpathname=[shortpathname ':'];
-    end
-    cdpath=['cd ' '''' shortpathname '''' ];% Crazy quotes allow spaces
-    %                                       % in directory names.
-    eval(cdpath)
-  end
-  if exist('projectname')==0
+  if exist('projectname','var')==0
     [filename,pathname]=uiputfile('projectname.eqn','Save as:');
-    sfilename=size(filename);
-    path(path,pathname)
-    lfilename=sfilename(2);
-    if filename(lfilename-3)=='.'
-      filename=[filename(1:lfilename-4)  '.eqn'];
-      projectname=filename(1:lfilename-4);
-     else
-      filename=[filename '.eqn'];
-      projectname=filename(1:lfilename-4);
+    if ~isequal(filename,0)
+      cd(pathname)
+      [~,projectname]=fileparts(filename);
     end
   end
   p=p';
-  eval(['save ',projectname,'.eqn',' k1',' m1',' x1',' f1',' p']);
+  if exist('projectname','var')
+    save('-mat',[projectname '.eqn'],'k1','m1','x1','f1','p');
+  end
   disp('Saving data')
 end
 
-answer=input('Show results graphically(y)? (y/n) ','s');
+if isfield(opts,'plot')
+  answer=opts.plot;
+else
+  answer=input('Show results graphically(y)? (y/n) ','s');
+end
 if answer~='n'
   vtb8_3(node,x,zero,ncon,p,f);
 end

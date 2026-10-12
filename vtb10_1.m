@@ -47,7 +47,7 @@ clf
 [x,xd]=meshgrid(a,b);
 s=size(x);
 axis('square')
-%axis([x(1,1) x(1,s(2)) xd(s(1),1) xd(1,1)]);
+axis([min(x(:)) max(x(:)) min(xd(:)) max(xd(:))]);
 
 aa=version;ll=length(aa);
 
@@ -98,6 +98,6 @@ for k=1:n
   xd=xd2;
   %drawnow
 end
-plot(zlog(:,1),zlog(:,2),'or')
+if nzero>0, plot(zlog(:,1),zlog(:,2),'or'), end
 hold off
 grid on

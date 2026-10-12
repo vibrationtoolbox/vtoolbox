@@ -4,42 +4,22 @@ function vtb8_3(node,x,zero,ncon,p,f)
 
 if nargin==0
   [filename,pathname]=uigetfile('*.out','Open Project Output File');
-  sfilename=size(filename);
-  sizepath=size(pathname);
-  shortpathname=pathname(1:sizepath(2)-1);
-  lsp=size(findstr(shortpathname,':'));
-  if strcmp(computer,'MAC2') & lsp(1)==0
-    shortpathname=[shortpathname ':'];
+  if isequal(filename,0)
+    return
   end
-  cdpath=['cd ' '''' shortpathname '''' ];% Crazy quotes allow spaces
-  %                                       % in directory names.
-  eval(cdpath)
-  oflag=1;
-  lfilename=sfilename(2);
-  if filename(lfilename-3)=='.'
-    filename=[filename(1:lfilename-4)  '.con'];
-    projectname=filename(1:lfilename-4);
-   else
-    filename=[filename '.con'];
-    projectname=filename(1:lfilename-4);
-  end
-  eval(['load ',projectname,'.con -mat']);
-  eval(['load ',projectname,'.eqn -mat']);
-  eval(['load ',projectname,'.out -mat']);
+  cd(pathname)
+  [~,projectname]=fileparts(filename);
+  load([projectname '.con'],'-mat');
+  load([projectname '.eqn'],'-mat');
+  load([projectname '.out'],'-mat');
 end
 answer='c';
 snode=size(node);
-nnum=[];
+
 flag3=0;
+nnum=cell(1,snode(1));
 for i=1:snode(1)
- stri=num2str(i);
- if length(stri)==1
-  stri=[stri ' '];
- end
- if length(stri)==2
-  stri=[stri ' '];
- end
- nnum=[nnum;stri];
+ nnum{i}=num2str(i);
 end
 figure
 ndof=size(node);
@@ -137,8 +117,8 @@ for ii=1:1000
   hold off
   clf
   plot(node(:,1),node(:,2),'*b')
-  uicontrol('style','pushbutton','units','normal','position',[.91 .95 .075 .05],'string','Print','callback','print')
-  uicontrol('style','pushbutton','units','normal','position',[.91 .89 .075 .05],'string','Close','callback','delete(gcf)')
+  uicontrol('style','pushbutton','units','normalized','position',[.91 .95 .075 .05],'string','Print','callback','print')
+  uicontrol('style','pushbutton','units','normalized','position',[.91 .89 .075 .05],'string','Close','callback','delete(gcf)')
 %%%
   dx=.01*(xh-xl);
   dy=.035*(yh-yl);

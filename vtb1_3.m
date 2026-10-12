@@ -8,9 +8,9 @@ function [t,x,v] = vtb1_3(rkf,u,t,x0,v0)
 %       v0 is the initial velocity.
 %       The force vector f is ordered such that the nth column or row
 %       of f is the force vector f evaluated at time n*dt.
-%       xdd is a string variable of the the differential equation solved 
-%           for the acceleration using x, v, t and f for the displacement,
-%           velocity, time, and force. 
+%       xdd is a string (or a function handle @(x,v,t,f)) of the the
+%           differential equation solved for the acceleration using x, v,
+%           t and f for the displacement, velocity, time, and force.
 %       Example 1:
 %          If the equation is
 %          10 xdd + 2 xd + 1000 x= 30 sin(10 t)
@@ -72,13 +72,17 @@ if nargin==0
    clear x v
 else
 
-    
-xis=min(strfind(rkf,'*x'));
-s=rkf(1:(xis-1));
-lockom=min([strfind(s,'+') strfind(s,'-')]);
-rkf((lockom+1):xis);
-kom=str2num(rkf((lockom+1):(xis-1)));
-if isempty(kom)
+if ischar(rkf)
+    xis=min(strfind(rkf,'*x'));
+    s=rkf(1:(xis-1));
+    lockom=min([strfind(s,'+') strfind(s,'-')]);
+    rkf((lockom+1):xis);
+    kom=str2num(rkf((lockom+1):(xis-1)));
+    if isempty(kom)
+        kom=1;
+    end
+    rkf=str2func(['@(x,v,t,f) ' rkf]);
+else
     kom=1;
 end
 
@@ -106,24 +110,21 @@ for l1=1:(n-1);
    z1=z(:,l1);
    xx=z1(1);vv=z1(2);
    u1=u(l1);
-   u2=u(l1+1);
-   t=tt(l1);
-   f=u1;
-   x=xx;
-   v=vv;
-   k1=h*[v;eval(rkf)];
+   tt1=tt(l1);
+
+   k1=h*[vv;rkf(xx,vv,tt1,u1)];
 
    x=xx+k1(1)/2;
    v=vv+k1(2)/2;
-   k2=h*[v;eval(rkf)];
+   k2=h*[v;rkf(x,v,tt1+h/2,u1)];
 
    x=xx+k2(1)/2;
    v=vv+k2(2)/2;
-   k3=h*[v;eval(rkf)];
+   k3=h*[v;rkf(x,v,tt1+h/2,u1)];
 
    x=xx+k3(1);
    v=vv+k3(2);
-   k4=h*[v;eval(rkf)];
+   k4=h*[v;rkf(x,v,tt1+h,u1)];
 
    z(:,l1+1)=z(:,l1)+1/6*(k1+2*k2+2*k3+k4);
 end

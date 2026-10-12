@@ -1,6 +1,6 @@
 function [x,xd]=vtb4_4(M,D,K,F,T, V0, X0)
 
-%VTB1_4 Solves the forced multiple degree of freedom system matrix
+%VTB4_4 Solves the forced multiple degree of freedom system matrix
 %exponential methods (closed-form accurate for linear systems)
 %using Matlab's lsim.
 %  

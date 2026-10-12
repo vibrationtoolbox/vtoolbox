@@ -111,7 +111,8 @@ if nargin>0
     end
     %dt=max([dt T/10000])
     t=0:dt:T*3;length(t);
-    F=0*t+eval(a0)/2;
+    fa0=str2func(['@(n) ' a0]);
+    F=0*t+fa0(0)/2;
     for n=1:N
         if nargin>6
             if floor(n/2)==n/2
@@ -123,7 +124,9 @@ if nargin>0
             end
             
         end
-        F=F+eval(a)*cos(n*2*pi*t/T)+eval(b)*sin(n*2*pi*t/T);
+        fa=str2func(['@(n) ' a]);
+        fb=str2func(['@(n) ' b]);
+        F=F+fa(n)*cos(n*2*pi*t/T)+fb(n)*sin(n*2*pi*t/T);
     end
 
     plot(t,F)

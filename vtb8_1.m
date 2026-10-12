@@ -2,6 +2,11 @@ function vtb8_1
 % VTB8_1  [node,ncon,zero,force]=VTB8_1
 % Makes input file for VTB8_2
 % I suggest you print the file vtb8read.txt
+%
+% NOTE: This is a very dated graphical interface. By modern standards it
+% is likely easier to define the model directly (see the example script
+% vtb8_e1.m) and call VTB8_2 yourself. Modern finite element software has
+% also progressed to be easy to use and freely available.
 
 %   Joseph C. Slater, 6-17-90
 %   Copyright (c) 1990-94 by Joseph C. Slater
