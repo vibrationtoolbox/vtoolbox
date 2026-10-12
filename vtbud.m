@@ -41,7 +41,7 @@ if isempty(vtbdir)
 
     if strcmp(answer,'Yes')&&strcmp(license,'Yes')
         vtbupdir = uigetdir(pwd,'Choose a directory to install the Engineering Vibration Toolbox in.') ;
-        if ~isempty(findstr(lower(vtbupdir),'matlab'))
+        if ~isempty(strfind(lower(vtbupdir),'matlab'))
             ans1=questdlg('Installation of the Engineering Vibration Toolbox inside the Matlab application directory can cuase it to be deleted during future matlab updates. Are you sure you want to install here?','Are you sure?','No');
             if strcmp(ans1,'No')
                 vtbupdir = uigetdir(pwd,'Choose a directory to install the Engineering Vibration Toolbox in.') ;
@@ -119,7 +119,7 @@ if strcmp(answer,'Yes')&&strcmp(license,'Yes')
             st=0;
         end
         if st==0
-            msgdlg('Without a downloaded vtoolbox.zip file or an internet connection the installation cannot continue.','Error')
+            msgbox('Without a downloaded vtoolbox.zip file or an internet connection the installation cannot continue.','Error')
             return
         end
         websave('vtoolbox.zip',ziploc)
@@ -132,8 +132,8 @@ addpath(pwd,'-end');
 vtbdir=pwd;
 aa=savepath;
 if aa==1
-    if isempty(findstr('vtoolbox',path))
-    if isunix&&~strcmp(computer,'MACI')&&~strcmp(update,'Yes')
+    if isempty(strfind(path,'vtoolbox'))
+    if isunix&&~ismac&&~strcmp(update,'Yes')
         astartmod=questdlg(['Path not saved. You will need to add the line ''addpath(''' pwd ''')'' to your startup.m file. Do you want me to attempt to do this?']) ;
         if strcmp(astartmod,'Yes')
             startupfile = fullfile(getenv('HOME'),'startup.m');

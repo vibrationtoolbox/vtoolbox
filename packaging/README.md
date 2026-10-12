@@ -139,6 +139,16 @@ internal version and the git tag/GitHub Release, e.g. a release made on
 ``2026.10.11``. Keeping both identical avoids confusion between what
 ``ver``/Add-On Manager shows a user and what tag/release it came from.
 
+MATLAB requires ``ToolboxVersion`` to be a strict 3-component semantic
+version (``major.minor.patch``, numeric, no leading zeros) -- a 4th
+component (e.g. ``2026.10.11.1``) is rejected by
+``matlab.addons.toolbox.packageToolbox`` with "not a valid semantic
+version". If a second release is needed on the same local calendar day,
+use the *build* date instead: the release workflow runs on GitHub-hosted
+runners in UTC, so a release pushed late in the day (local time) often
+already falls on the next UTC date -- use that date for both the tag and
+``toolboxVersion`` rather than inventing a patch suffix.
+
 The internal version is **not** stored in ``vtoolbox.prj`` itself (that
 file is just a pointer). It is embedded as JSON inside an XML attribute in
 one of the hash-named files under ``resources/project/root/`` -- look for

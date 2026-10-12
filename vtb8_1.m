@@ -279,44 +279,19 @@ ncon;
 zero;
 force;
 
-%path(path,pwd)
 answer=input('Save configuration file (Else all will have been in vain)? (y/n) ','s');
-%if answer=='y'
-%  filename=input(' Enter name of configuration file. ','s');
-%  eval(['save ',filename,'.con',' node',' ncon',' zero',' force',' conm']);
-%  answer=input(' Run analysis? (y/n) ','s');
-%  if answer=='y'
-%    vtb8_2(filename);
-%    vtb8_2(node,ncon,zero,force,conm);
-%  end
-%end
 if answer=='y'
   [filename,pathname]=uiputfile('projectname.con','Save as:');
-  sfilename=size(filename);
-  path(path,pathname)
-  lfilename=sfilename(2);
-  if filename(lfilename-3)=='.'
-    filename=[filename(1:lfilename-4)  '.con'];
-    projectname=filename(1:lfilename-4);
-   else
-    filename=[filename '.con'];
-    projectname=filename(1:lfilename-4);
-  end
-  pathname;
-  sizepath=size(pathname);
-  shortpathname=pathname(1:sizepath(2)-1);
-  lsp=size(findstr(shortpathname,':'));
-  if strcmp(computer,'MAC2') & lsp(1)==0
-    shortpathname=[shortpathname ':'];
-  end
-  %path(shortpathname)
-  cdpath=['cd ' '''' shortpathname '''' ];% Crazy quotes allow spaces
-  %                                       % in directory names.
-  eval(cdpath)
-  eval(['save ',filename,' node',' ncon',' zero',' force',' conm']);
-  answer=input(' Run analysis? (y/n) ','s');
-  if answer=='y'
-    vtb8_2(projectname);
+  if ~isequal(filename,0)
+    [~,projectname]=fileparts(filename);
+    filename=[projectname '.con'];
+    path(path,pathname)
+    cd(pathname)
+    save(filename,'node','ncon','zero','force','conm');
+    answer=input(' Run analysis? (y/n) ','s');
+    if answer=='y'
+      vtb8_2(projectname);
+    end
   end
 end
 

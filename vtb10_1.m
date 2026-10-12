@@ -49,8 +49,6 @@ s=size(x);
 axis('square')
 axis([min(x(:)) max(x(:)) min(xd(:)) max(xd(:))]);
 
-aa=version;ll=length(aa);
-
 plot(x(1,1),xd(1,1))
 hold on
 range=max(a)-min(a);

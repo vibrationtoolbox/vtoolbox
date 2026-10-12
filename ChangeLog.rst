@@ -11,6 +11,17 @@ website.
 ========= =============== ===============================================
   Date       code/s                change
 --------- --------------- -----------------------------------------------
+10/11/26    vtb8_1          Remove eval/findstr/dead Mac-specific code
+                            from the save-configuration block (same
+                            cleanup as vtb8_2/vtb8_3); remove stale
+                            commented-out dead code.
+10/11/26    vtb10_1         Remove unused leftover version-check
+                            variables.
+10/11/26    vtbud           Replace findstr with strfind; fix Mac/Linux
+                            branch check (was comparing computer() to the
+                            obsolete 'MACI' string, which never matches
+                            on modern systems); fix msgdlg typo (not a
+                            real MATLAB function) -> msgbox.
 10/11/26    vtb1_3          Remove eval; also accepts function handles and
                             passes the stage time correctly to each Runge-
                             Kutta stage (was using one fixed time for all
